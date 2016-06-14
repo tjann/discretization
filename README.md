@@ -1,0 +1,2 @@
+# discretization
+Evaluates discretization algorithms.
