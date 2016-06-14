@@ -121,13 +121,13 @@ score <- function(discretized){
 Apply all `disc` files to helper `score`
 ```{r}
 scores <- apply(disc, 2, score)
-scores
 ```
 
-View results
+View results, best method first
 ```{r}
-sort(scores, decreasing = TRUE)
+sort(scores)
 ```
+
 
 
 

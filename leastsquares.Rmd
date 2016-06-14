@@ -122,11 +122,10 @@ Apply all `disc` files to helper `score`
 scores <- sapply(as.data.frame(disc), score)
 ```
 
-View results
+View results, best method first
 ```{r}
-sort(scores, decreasing = TRUE)
+sort(scores)
 ```
-
 
 
 

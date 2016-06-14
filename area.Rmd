@@ -69,14 +69,14 @@ gold <- gold / (max(gold) - min(gold))
 #Normalized gold standard network
 head(gold)
 cat("min:", min(gold), "max:", max(gold))
-
-#Vectors for each node of gold standard network
-v1 <- gold$V1
-v2 <- gold$V2
-v3 <- gold$V3
-v4 <- gold$V4
-v5 <- gold$V5
-goldV <- c(v1, v2, v3, v4, v5)
+# 
+# #Vectors for each node of gold standard network
+# v1 <- gold$V1
+# v2 <- gold$V2
+# v3 <- gold$V3
+# v4 <- gold$V4
+# v5 <- gold$V5
+# goldV <- c(v1, v2, v3, v4, v5)
 ```
 
 Find all applicable files w.r.t. gold standard network
@@ -111,34 +111,40 @@ disc
 
 Helper: calculate area under connected time points for one node
 ```{r}
-area <- function(node){
+partArea <- function(node){
   output <- sum(node[2:(length(node) - 1)], na.rm=TRUE) + (node[1] + node[length(node)]) / 2
   return(output)
 }
 ```
 
-Calculating area under all gold nodes (execute once only)
+Helper: calculating aggregate area under all nodes of **one** discretization output using `partArea`
 ```{r}
-goldArea <- sum(sapply(goldV, area))
-goldArea
-```
-
-Helper: calculating area under all nodes of **one** discretization output
-```{r}
-partArea <- function(method){
-  return(sum(sapply(method, area)))
+totArea <- function(method){
+  return(sum(sapply(method, partArea)))
 }
 ```
 
-Helper: get the total area for each discretization output
+Get the total area (`totArea`) for each discretization output
 ```{r}
-totArea <- apply(disc, 2, partArea)
-totArea
+allArea <- apply(disc, 2, totArea)
+allArea
 ```
 
+Calculating area under all gold nodes (execute once only)
+```{r}
+goldArea <- sum(sapply(gold, partArea))
+goldArea
+```
 
+Find absolute error for each method
+```{r}
+error <- abs(allArea - goldArea)
+```
 
-
+View results, best method first
+```{r}
+sort(error)
+```
 
 
 <!-- Helper: calculates score for a discretization result -->
