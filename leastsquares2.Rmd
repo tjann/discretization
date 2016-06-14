@@ -1,5 +1,5 @@
 ---
-title: "Area Comparison of Multiple Discretization Results for One Data Set"
+title: "Least Squares of Multiple Discretization Results for One Data Set [[]]"
 author: "Tiffany Jann"
 date: ""
 output: 
@@ -8,23 +8,20 @@ output:
     fig_width: 5
 ---
 <!-- Don't edit in between this line and the one below -->
-```{r include=FALSE}
+```{r include=FALSE, echo=FALSE}
 # Don't delete this chunk if you are using the DataComputing package
 library(DataComputing)
 ```
 *Source file* 
 ```{r, results='asis', echo=FALSE}
-includeSourceDocuments()
+includeSourceDocuments("/Users/jann/github/discretization/leastsquares.Rmd")
 ```
 <!-- Don't edit the material above this line -->
 ```{r include=FALSE}
 options(scipen=999)
 ```
-```{r}
 
-```
-
-Variable inputs
+Variable inputs:
 ```{r}
 #Gold Standard Network
 goldFile <- "wk2fivefmriCS100S20N3000.csv"
@@ -54,7 +51,6 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 Load and normalize original gold standard network
 ```{r}
 gold <- read.tcsv(goldFile, header=FALSE)
-# gold <- na.omit(gold)
 head(gold)
 
 print(min(gold))
@@ -71,12 +67,11 @@ head(gold)
 cat("min:", min(gold), "max:", max(gold))
 
 #Vectors for each node of gold standard network
-v1 <- gold$V1
-v2 <- gold$V2
-v3 <- gold$V3
-v4 <- gold$V4
-v5 <- gold$V5
-goldV <- c(v1, v2, v3, v4, v5)
+v1 <- gold[[1]]
+v2 <- gold[[2]]
+v3 <- gold[[3]]
+v4 <- gold[[4]]
+v5 <- gold[[5]]
 ```
 
 Find all applicable files w.r.t. gold standard network
@@ -95,7 +90,7 @@ getfile <- function(file){
   discretized <- read.tcsv(file)
   rownames <- discretized[,1]
   discretized <- na.omit(discretized[,-1])
-  #Ensures data uses 0 1 instead of 1 2, 2 3, etc.
+  #Ensures data uses 0 1 instead of 1 2
   if(max(discretized) != 1){
     discretized <- discretized - max(discretized) + 1
   }
@@ -103,74 +98,49 @@ getfile <- function(file){
 }
 ```
 
-Load all files into vectors using helper `getfile`
+Load all files using helper `getfile`
 ```{r}
 disc <- sapply(allfiles, getfile)
 disc
 ```
 
-Helper: calculate area under connected time points for one node
+
+Helper: calculates score for a discretization result
 ```{r}
-area <- function(node){
-  output <- sum(node[2:(length(node) - 1)], na.rm=TRUE) + (node[1] + node[length(node)]) / 2
-  return(output)
+score <- function(discretized){
+  x1 <- discretized[[1]]
+  x2 <- discretized[[2]]
+  x3 <- discretized[[3]]
+  x4 <- discretized[[4]]
+  x5 <- discretized[[5]]
+  totdiff <- sum(abs(x1 - v1), na.rm=TRUE) + sum(abs(x2 - v2), na.rm=TRUE) + sum(abs(x3 - v3), na.rm=TRUE) + sum(abs(x4 - v4), na.rm=TRUE) + sum(abs(x5 - v5), na.rm=TRUE)
+  return(totdiff)
 }
 ```
 
-Calculating area under all gold nodes (execute once only)
+Apply all `disc` files to helper `score`
 ```{r}
-goldArea <- sum(sapply(goldV, area))
-goldArea
+scores <- apply(disc, 2, score)
+scores
 ```
 
-Helper: calculating area under all nodes of **one** discretization output
+View results
 ```{r}
-partArea <- function(method){
-  return(sum(sapply(method, area)))
-}
-```
-
-Helper: get the total area for each discretization output
-```{r}
-totArea <- apply(disc, 2, partArea)
-totArea
+sort(scores, decreasing = TRUE)
 ```
 
 
 
 
-
-
-<!-- Helper: calculates score for a discretization result -->
 <!-- ```{r} -->
-<!-- score <- function(discretized){ -->
-<!--   x1 <- discretized$Gene1 -->
-<!--   x2 <- discretized$Gene2 -->
-<!--   x3 <- discretized$Gene3 -->
-<!--   x4 <- discretized$Gene4 -->
-<!--   x5 <- discretized$Gene5 -->
-<!--   totdiff <- sum(abs(x1 - v1), abs(x2 - v2), abs(x3 - v3), abs(x4 - v4), abs(x5 - v5)) -->
-<!--   return(totdiff) -->
+<!-- #discretized <- lapply getfile(file) -->
+<!-- discretized <- read.tcsv("wk2five_bikmeans.csv") -->
+<!-- discretized <- na.omit(discretized) -->
+<!-- rownames <- discretized[,1] -->
+<!-- discretized <- discretized[,-1] -->
+<!-- if(max(discretized) == 2){ -->
+<!--   discretized <- discretized - 1 -->
 <!-- } -->
-<!-- ``` -->
+<!-- head(discretized) -->
 
-<!-- Apply all `disc` files to helper `score` -->
-<!-- ```{r} -->
-<!-- scores <- sapply(as.data.frame(disc), score) -->
-<!-- ``` -->
-
-<!-- View results -->
-<!-- ```{r} -->
-<!-- sort(scores, decreasing = TRUE) -->
-<!-- ``` -->
-
-
-
-<!-- old -->
-<!-- ```{r} -->
-<!-- time <- c(1:length(gold)) -->
-<!-- gold <- v1 -->
-<!-- disc <- discretized$Gene1 -->
-<!-- df <- data.frame(time, gold, disc) -->
-<!-- df <- df %>% gather(datatype, value, c(gold, disc)) -->
 <!-- ``` -->

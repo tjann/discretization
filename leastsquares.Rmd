@@ -94,7 +94,7 @@ getfile <- function(file){
   if(max(discretized) != 1){
     discretized <- discretized - max(discretized) + 1
   }
-  head(discretized)
+  return(discretized)
 }
 ```
 
@@ -112,7 +112,7 @@ score <- function(discretized){
   x3 <- discretized$Gene3
   x4 <- discretized$Gene4
   x5 <- discretized$Gene5
-  totdiff <- sum(abs(x1 - v1), abs(x2 - v2), abs(x3 - v3), abs(x4 - v4), abs(x5 - v5))
+  totdiff <- sum(abs(x1 - v1), na.rm=TRUE) + sum(abs(x2 - v2), na.rm=TRUE) + sum(abs(x3 - v3), na.rm=TRUE) + sum(abs(x4 - v4), na.rm=TRUE) + sum(abs(x5 - v5), na.rm=TRUE)
   return(totdiff)
 }
 ```
