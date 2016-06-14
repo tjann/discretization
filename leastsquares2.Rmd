@@ -91,7 +91,7 @@ getfile <- function(file){
   rownames <- discretized[,1]
   discretized <- na.omit(discretized[,-1])
   #Ensures data uses 0 1 instead of 1 2
-  if(max(discretized) != 1){
+  if(max(discretized) > 1){
     discretized <- discretized - max(discretized) + 1
   }
   return(discretized)

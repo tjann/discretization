@@ -203,7 +203,7 @@ allfiles</code></pre>
   rownames &lt;- discretized[,1]
   discretized &lt;- na.omit(discretized[,-1])
   #Ensures data uses 0 1 instead of 1 2
-  if(max(discretized) != 1){
+  if(max(discretized) &gt; 1){
     discretized &lt;- discretized - max(discretized) + 1
   }
   return(discretized)
@@ -225,11 +225,11 @@ allfiles</code></pre>
 ## Gene4 Numeric,3000         Numeric,3000              
 ## Gene5 Numeric,3000         Numeric,3000              
 ##       wk2five_equalwidth.csv wk2five_erdals_1.csv wk2five_fi.csv
-## Gene1 Numeric,3000           Numeric,2999         Numeric,3000  
-## Gene2 Numeric,3000           Numeric,2999         Numeric,3000  
-## Gene3 Numeric,3000           Numeric,2999         Numeric,3000  
-## Gene4 Numeric,3000           Numeric,2999         Numeric,3000  
-## Gene5 Numeric,3000           Numeric,2999         Numeric,3000  
+## Gene1 Numeric,3000           Numeric,2999         Integer,3000  
+## Gene2 Numeric,3000           Numeric,2999         Integer,3000  
+## Gene3 Numeric,3000           Numeric,2999         Integer,3000  
+## Gene4 Numeric,3000           Numeric,2999         Integer,3000  
+## Gene5 Numeric,3000           Numeric,2999         Integer,3000  
 ##       wk2five_gallo.csv wk2five_kmeans.csv wk2five_maxxmax.csv
 ## Gene1 Numeric,3000      Numeric,3000       Numeric,3000       
 ## Gene2 Numeric,3000      Numeric,3000       Numeric,3000       
@@ -306,18 +306,18 @@ allfiles</code></pre>
 ## object length</code></pre>
 <p>View results, best method first</p>
 <pre class="r"><code>sort(scores)</code></pre>
-<pre><code>##     wk2five_equalwidth.csv             wk2five_fi.csv 
-##                   5299.309                   5618.445 
-##         wk2five_kmeans.csv       wk2five_erdals_1.csv 
-##                   5704.898                   5759.326 
-##       wk2five_bikmeans.csv           wk2five_mean.csv 
-##                   5775.180                   5892.464 
-##           wk2five_topx.csv wk2five_equalfrequency.csv 
-##                   6026.986                   6028.343 
-##         wk2five_median.csv          wk2five_gallo.csv 
-##                   6028.343                   6114.149 
-##            wk2five_tsd.csv        wk2five_maxxmax.csv 
-##                   7845.699                   8733.654</code></pre>
+<pre><code>##     wk2five_equalwidth.csv         wk2five_kmeans.csv 
+##                   5299.309                   5704.898 
+##       wk2five_erdals_1.csv       wk2five_bikmeans.csv 
+##                   5759.326                   5775.180 
+##           wk2five_mean.csv           wk2five_topx.csv 
+##                   5892.464                   6026.986 
+## wk2five_equalfrequency.csv         wk2five_median.csv 
+##                   6028.343                   6028.343 
+##          wk2five_gallo.csv            wk2five_tsd.csv 
+##                   6114.149                   7845.699 
+##        wk2five_maxxmax.csv             wk2five_fi.csv 
+##                   8733.654                   9381.555</code></pre>
 <!-- ```{r} -->
 <!-- #discretized <- lapply getfile(file) -->
 <!-- discretized <- read.tcsv("wk2five_bikmeans.csv") -->
