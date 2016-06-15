@@ -1,0 +1,93 @@
+LEAST SQUARES
+
+    wk2five_equalwidth.csv         wk2five_kmeans.csv 
+                  5304.309                   5709.898 
+      wk2five_erdals_1.csv       wk2five_bikmeans.csv 
+                  5759.326                   5780.180 
+          wk2five_mean.csv           wk2five_topx.csv 
+                  5897.464                   6031.986 
+wk2five_equalfrequency.csv         wk2five_median.csv 
+                  6033.343                   6033.343 
+         wk2five_gallo.csv            wk2five_tsd.csv 
+                  6119.149                   7845.699 
+       wk2five_maxxmax.csv             wk2five_fi.csv 
+                  8738.654                   9386.555
+
+    wk2ten_equalwidth.csv       wk2ten_bikmeans.csv 
+                 10898.84                  11284.16 
+      wk2ten_erdals_1.csv         wk2ten_kmeans.csv 
+                 11631.80                  11761.40 
+          wk2ten_mean.csv        wk2ten_topx_50.csv 
+                 12106.34                  12334.06 
+wk2ten_equalfrequency.csv         wk2ten_median.csv 
+                 12336.62                  12336.62 
+         wk2ten_gallo.csv            wk2ten_tsd.csv 
+                 12351.96                  15675.30 
+    wk2ten_maxxmax_50.csv             wk2ten_fi.csv 
+                 17284.40                  18602.60
+
+    wk2twenty_equalwidth.csv       wk2twenty_bikmeans.csv 
+                    21840.40                     22077.39 
+        wk2twenty_kmeans.csv           wk2twenty_mean.csv 
+                    23138.82                     23767.17 
+        wk2twenty_erdals.csv           wk2twenty_topx.csv 
+                    23828.56                     24151.45 
+wk2twenty_equalfrequency.csv         wk2twenty_median.csv 
+                    24156.11                     24156.11 
+         wk2twenty_gallo.csv            wk2twenty_tsd.csv 
+                    24325.24                     31351.15 
+       wk2twenty_maxxmax.csv             wk2twenty_fi.csv 
+                    33825.41                     36491.23
+
+    wk2thirty_equalwidth.csv       wk2thirty_bikmeans.csv 
+                    33019.39                     33281.09 
+      wk2thirty_erdals_1.csv         wk2thirty_kmeans.csv 
+                    34612.54                     35780.55 
+          wk2thirty_mean.csv        wk2thirty_topx_50.csv 
+                    36819.92                     37456.24 
+wk2thirty_equalfrequency.csv         wk2thirty_median.csv 
+                    37464.10                     37464.10 
+         wk2thirty_gallo.csv            wk2thirty_tsd.csv 
+                    37755.45                     43474.14 
+    wk2thirty_maxxmax_50.csv             wk2thirty_fi.csv 
+                    52191.11                     55997.64
+
+
+      wk2fifty_bikmeans.csv     wk2fifty_equalwidth.csv 
+                   55237.83                    55299.76 
+      wk2fifty_erdals_1.csv         wk2fifty_kmeans.csv 
+                   58185.04                    59453.44 
+          wk2fifty_mean.csv        wk2fifty_topx_50.csv 
+                   61235.44                    62292.47 
+wk2fifty_equalfrequency.csv         wk2fifty_median.csv 
+                   62305.41                    62305.41 
+         wk2fifty_gallo.csv            wk2fifty_tsd.csv 
+                   62508.81                    72461.64 
+    wk2fifty_maxxmax_50.csv             wk2fifty_fi.csv 
+                   86618.60                    92994.97
+
+      wk2ADHD_bikmeans.csv        wk2ADHD_topx_50.csv 
+                  4341.027                   4352.617 
+wk2ADHD_equalfrequency.csv         wk2ADHD_median.csv 
+                  4355.270                   4355.270 
+          wk2ADHD_mean.csv         wk2ADHD_kmeans.csv 
+                  4357.490                   4365.468 
+         wk2ADHD_gallo.csv     wk2ADHD_equalwidth.csv 
+                  4430.908                   4437.035 
+    wk2ADHD_maxxmax_50.csv       wk2ADHD_erdals_1.csv 
+                  5054.437                   5099.929 
+           wk2ADHD_tsd.csv             wk2ADHD_fi.csv 
+                  5324.681                 522567.063
+
+    wk2CTRL_maxxmax_50.csv         wk2CTRL_kmeans.csv 
+                  3784.689                   4109.121 
+    wk2CTRL_equalwidth.csv           wk2CTRL_mean.csv 
+                  4113.500                   4186.995 
+wk2CTRL_equalfrequency.csv         wk2CTRL_median.csv 
+                  4222.699                   4222.699 
+       wk2CTRL_topx_50.csv          wk2CTRL_gallo.csv 
+                  4234.096                   4248.868 
+      wk2CTRL_bikmeans.csv       wk2CTRL_erdals_1.csv 
+                  4687.298                   4859.617 
+           wk2CTRL_tsd.csv             wk2CTRL_fi.csv 
+                  5325.212                 522555.900

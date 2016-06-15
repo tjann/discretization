@@ -24,7 +24,7 @@ options(scipen=999)
 Variable inputs:
 ```{r}
 #Gold Standard Network
-goldFile <- "wk2ADHDfmri_Sub035.csv"
+goldFile <- "wk2CTRLfmri_Sub105.csv"
 ```
 
 Helper: reads and transposes data table

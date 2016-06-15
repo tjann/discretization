@@ -101,7 +101,7 @@ head(disc)
 Helper: calculate area under connected time points for one node
 ```{r}
 partArea <- function(node){
-  output <- sum(node[2:(length(node) - 1)], na.rm=TRUE) + (node[1] + node[length(node)]) / 2
+  output <- sum(node[2:(length(node) - 1)]) + (node[1] + node[length(node)]) / 2
   return(output)
 }
 ```
