@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fnil\fcharset0 Cambria;\f1\ftech\fcharset77 Symbol;}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs28 \cf0 NAMING\
+\
+The evaluation scripts rely heavily on REGEX, so it is important that you either 1) edit the script to match your naming scheme 2) we recommend you use the following naming scheme:\
+\
+NAMING ORIGINAL DATA SETS\
+\
+[name for group of data sets] [identifying attribute of particular data set] fmri [rest don\'92t matter]\
+	\
+Examples:\
+wk2fiftyfmriCS100S50N3000.csv\
+[wk2] [fifty] fmri [CS100S50N3000].csv\
+wk2CTRLfmri_Sub105.csv\
+[wk2] [CTRL] fmri [_Sub105].csv\
+\
+The fmri is important. From our script, \
+\
+	key <- gsub("fmri.*\\\\.csv$", "", goldFile)\
+\
+we take the file name and remove everything from fmri onwards, inclusive, as the pattern. Thus, \'93fmri\'94 must be present, and everything before that will be become the key when R looks for corresponding discretized data sets:\
+\
+NAMING DISCRETIZED DATA SETS\
+\
+[name for group of data sets] [identifying attribute of particular data set] _ [discretization method name]\
+\
+Here, the _ is important. From our script,\
+\
+	pattern <- paste(key, "_", sep="")\
+\
+The _ ensures that the original data set is not grouped with the discretized data sets. (Recall that after the first two [] [], data must be followed by \'93fmri\'94, instead of _).\
+\
+============================================================\
+\
+DETAILS\
+\
+In our first run (wk2\'85), we \
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\ls1\ilvl0
+\f1 \cf0 \'a5	
+\f0 Used scope = rows (representing nodes/brain regions). This applied to mean, median, Max-X%Max, Top %X, Equal Frequency, Equal Width, and Kmeans clustering.\
+\ls1\ilvl0
+\f1 \'a5	
+\f0 Used alpha = 1 for Erdal\'92s\
+\ls1\ilvl0
+\f1 \'a5	
+\f0 No parameters to fiddle: FI, BiKmeans, Gallo, TSD}

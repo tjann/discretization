@@ -122,13 +122,14 @@ $(document).ready(function () {
 
 
 <!-- Don't edit in between this line and the one below -->
-<p><em>Source file</em> <a href="data:text/x-markdown;base64,LS0tCnRpdGxlOiAiQXJlYSBDb21wYXJpc29uIG9mIE11bHRpcGxlIERpc2NyZXRpemF0aW9uIFJlc3VsdHMgZm9yIE9uZSBEYXRhIFNldCIKYXV0aG9yOiAiVGlmZmFueSBKYW5uIgpkYXRlOiAiIgpvdXRwdXQ6IAogIGh0bWxfZG9jdW1lbnQ6CiAgICBmaWdfaGVpZ2h0OiAzCiAgICBmaWdfd2lkdGg6IDUKLS0tCjwhLS0gRG9uJ3QgZWRpdCBpbiBiZXR3ZWVuIHRoaXMgbGluZSBhbmQgdGhlIG9uZSBiZWxvdyAtLT4KYGBge3IgaW5jbHVkZT1GQUxTRX0KIyBEb24ndCBkZWxldGUgdGhpcyBjaHVuayBpZiB5b3UgYXJlIHVzaW5nIHRoZSBEYXRhQ29tcHV0aW5nIHBhY2thZ2UKbGlicmFyeShEYXRhQ29tcHV0aW5nKQpgYGAKKlNvdXJjZSBmaWxlKiAKYGBge3IsIHJlc3VsdHM9J2FzaXMnLCBlY2hvPUZBTFNFfQppbmNsdWRlU291cmNlRG9jdW1lbnRzKCIvVXNlcnMvamFubi9naXRodWIvZGlzY3JldGl6YXRpb24vYXJlYS5SbWQiKQpgYGAKPCEtLSBEb24ndCBlZGl0IHRoZSBtYXRlcmlhbCBhYm92ZSB0aGlzIGxpbmUgLS0+CmBgYHtyIGluY2x1ZGU9RkFMU0V9Cm9wdGlvbnMoc2NpcGVuPTk5OSkKYGBgCgpWYXJpYWJsZSBpbnB1dHMKYGBge3J9CiNHb2xkIFN0YW5kYXJkIE5ldHdvcmsKZ29sZEZpbGUgPC0gIndrMmZpdmVmbXJpQ1MxMDBTMjBOMzAwMC5jc3YiCmBgYAoKSGVscGVyOiByZWFkcyBhbmQgdHJhbnNwb3NlcyBkYXRhIHRhYmxlCmBgYHtyfQpyZWFkLnRjc3YgPSBmdW5jdGlvbihmaWxlLCBoZWFkZXI9VFJVRSwgc2VwPSIsIiwgLi4uKSB7CgogIG4gPSBtYXgoY291bnQuZmllbGRzKGZpbGUsIHNlcD1zZXApLCBuYS5ybT1UUlVFKQogIHggPSByZWFkTGluZXMoZmlsZSkKCiAgLnNwbGl0dmFyID0gZnVuY3Rpb24oeCwgc2VwLCBuKSB7CiAgICB2YXIgPSB1bmxpc3Qoc3Ryc3BsaXQoeCwgc3BsaXQ9c2VwKSkKICAgIGxlbmd0aCh2YXIpID0gbgogICAgcmV0dXJuKHZhcikKICB9CgogIHggPSBkby5jYWxsKGNiaW5kLCBsYXBwbHkoeCwgLnNwbGl0dmFyLCBzZXA9c2VwLCBuPW4pKQogIHggPSBhcHBseSh4LCAxLCBwYXN0ZSwgY29sbGFwc2U9c2VwKSAKICBvdXQgPSByZWFkLmNzdih0ZXh0PXgsIHNlcD1zZXAsIGhlYWRlcj1oZWFkZXIpCiAgcmV0dXJuKG91dCkKCn0KYGBgCgpMb2FkIGFuZCBub3JtYWxpemUgb3JpZ2luYWwgZ29sZCBzdGFuZGFyZCBuZXR3b3JrCmBgYHtyfQpnb2xkIDwtIHJlYWQudGNzdihnb2xkRmlsZSwgaGVhZGVyPUZBTFNFKQojIGdvbGQgPC0gbmEub21pdChnb2xkKQpoZWFkKGdvbGQpCgpwcmludChtaW4oZ29sZCkpCiNWZXJ0aWNhbCBzaGlmdApnb2xkIDwtIGdvbGQgLSBtaW4oZ29sZCkKI1Nob3VsZCBiZSAwCnByaW50KG1pbihnb2xkKSkKCiNTY2FsaW5nIHRvIHVuaXQgbGVuZ3RoCmdvbGQgPC0gZ29sZCAvIChtYXgoZ29sZCkgLSBtaW4oZ29sZCkpCgojTm9ybWFsaXplZCBnb2xkIHN0YW5kYXJkIG5ldHdvcmsKaGVhZChnb2xkKQpjYXQoIm1pbjoiLCBtaW4oZ29sZCksICJtYXg6IiwgbWF4KGdvbGQpKQpgYGAKCkZpbmQgYWxsIGFwcGxpY2FibGUgZmlsZXMgdy5yLnQuIGdvbGQgc3RhbmRhcmQgbmV0d29yawpgYGB7cn0KI0Fzc3VtaW5nIHdlIGFyZSBvbmx5IHVzaW5nIGRhdGEgZ2VuZXJhdGVkIGJ5IE1VTEFOCnBhdHRlcm4gPC0gZ3N1YigiZm1yaS4qXFwuY3N2JCIsICIiLCBnb2xkRmlsZSkKcGF0dGVybiA8LSBwYXN0ZShwYXR0ZXJuLCAiXyIsIHNlcD0iIikKCmFsbGZpbGVzIDwtIGxpc3QuZmlsZXMoZ2V0d2QoKSwgcGF0dGVybikKYWxsZmlsZXMKYGBgCgpIZWxwZXI6IGdldHMgYWxsIGRpc2NyZXRpemF0aW9uIHJlc3VsdHMgcmVhZHkgZm9yIGV2YWx1YXRpb24KYGBge3J9CmdldGZpbGUgPC0gZnVuY3Rpb24oZmlsZSl7CiAgZGlzY3JldGl6ZWQgPC0gcmVhZC50Y3N2KGZpbGUpCiAgcm93bmFtZXMgPC0gZGlzY3JldGl6ZWRbLDFdCiAgZGlzY3JldGl6ZWQgPC0gbmEub21pdChkaXNjcmV0aXplZFssLTFdKQogICNFbnN1cmVzIGRhdGEgdXNlcyAwIDEgaW5zdGVhZCBvZiAxIDIsIDIgMywgZXRjLgogIGlmKG1heChkaXNjcmV0aXplZCkgPiAxKXsKICAgIGRpc2NyZXRpemVkIDwtIGRpc2NyZXRpemVkIC0gbWF4KGRpc2NyZXRpemVkKSArIDEKICB9CiAgcmV0dXJuKGRpc2NyZXRpemVkKQp9CmBgYAoKTG9hZCBhbGwgZmlsZXMgaW50byB2ZWN0b3JzIHVzaW5nIGhlbHBlciBgZ2V0ZmlsZWAKYGBge3J9CmRpc2MgPC0gc2FwcGx5KGFsbGZpbGVzLCBnZXRmaWxlKQpkaXNjCmBgYAoKSGVscGVyOiBjYWxjdWxhdGUgYXJlYSB1bmRlciBjb25uZWN0ZWQgdGltZSBwb2ludHMgZm9yIG9uZSBub2RlCmBgYHtyfQpwYXJ0QXJlYSA8LSBmdW5jdGlvbihub2RlKXsKICBvdXRwdXQgPC0gc3VtKG5vZGVbMjoobGVuZ3RoKG5vZGUpIC0gMSldLCBuYS5ybT1UUlVFKSArIChub2RlWzFdICsgbm9kZVtsZW5ndGgobm9kZSldKSAvIDIKICByZXR1cm4ob3V0cHV0KQp9CmBgYAoKSGVscGVyOiBjYWxjdWxhdGluZyBhZ2dyZWdhdGUgYXJlYSB1bmRlciBhbGwgbm9kZXMgb2YgKipvbmUqKiBkaXNjcmV0aXphdGlvbiBvdXRwdXQgdXNpbmcgYHBhcnRBcmVhYApgYGB7cn0KdG90QXJlYSA8LSBmdW5jdGlvbihtZXRob2QpewogIHJldHVybihzdW0oc2FwcGx5KG1ldGhvZCwgcGFydEFyZWEpKSkKfQpgYGAKCkdldCB0aGUgdG90YWwgYXJlYSAoYHRvdEFyZWFgKSBmb3IgZWFjaCBkaXNjcmV0aXphdGlvbiBvdXRwdXQKYGBge3J9CmFsbEFyZWEgPC0gYXBwbHkoZGlzYywgMiwgdG90QXJlYSkKYWxsQXJlYQpgYGAKCkNhbGN1bGF0aW5nIGFyZWEgdW5kZXIgYWxsIGdvbGQgbm9kZXMgKGV4ZWN1dGUgb25jZSBvbmx5KQpgYGB7cn0KZ29sZEFyZWEgPC0gc3VtKHNhcHBseShnb2xkLCBwYXJ0QXJlYSkpCmdvbGRBcmVhCmBgYAoKRmluZCBhYnNvbHV0ZSBlcnJvciBmb3IgZWFjaCBtZXRob2QKYGBge3J9CmVycm9yIDwtIGFicyhhbGxBcmVhIC0gZ29sZEFyZWEpCmBgYAoKVmlldyByZXN1bHRzLCBiZXN0IG1ldGhvZCBmaXJzdApgYGB7cn0Kc29ydChlcnJvcikKYGBg" target="_blank" title="User  at /Users/jann" download="area.Rmd"> ⇒ /Users/jann/github/discretization/area.Rmd</a><br />
+<p><em>Source file</em> <a href="data:text/x-markdown;base64,LS0tCnRpdGxlOiAiQXJlYSBDb21wYXJpc29uIG9mIE11bHRpcGxlIERpc2NyZXRpemF0aW9uIFJlc3VsdHMgZm9yIE9uZSBEYXRhIFNldCIKYXV0aG9yOiAiVGlmZmFueSBKYW5uIgpkYXRlOiAiIgpvdXRwdXQ6IAogIGh0bWxfZG9jdW1lbnQ6CiAgICBmaWdfaGVpZ2h0OiAzCiAgICBmaWdfd2lkdGg6IDUKLS0tCjwhLS0gRG9uJ3QgZWRpdCBpbiBiZXR3ZWVuIHRoaXMgbGluZSBhbmQgdGhlIG9uZSBiZWxvdyAtLT4KYGBge3IgaW5jbHVkZT1GQUxTRX0KIyBEb24ndCBkZWxldGUgdGhpcyBjaHVuayBpZiB5b3UgYXJlIHVzaW5nIHRoZSBEYXRhQ29tcHV0aW5nIHBhY2thZ2UKbGlicmFyeShEYXRhQ29tcHV0aW5nKQpgYGAKKlNvdXJjZSBmaWxlKiAKYGBge3IsIHJlc3VsdHM9J2FzaXMnLCBlY2hvPUZBTFNFfQppbmNsdWRlU291cmNlRG9jdW1lbnRzKCIvVXNlcnMvamFubi9naXRodWIvZGlzY3JldGl6YXRpb24vYXJlYS5SbWQiKQpgYGAKPCEtLSBEb24ndCBlZGl0IHRoZSBtYXRlcmlhbCBhYm92ZSB0aGlzIGxpbmUgLS0+CmBgYHtyIGluY2x1ZGU9RkFMU0V9Cm9wdGlvbnMoc2NpcGVuPTk5OSkKYGBgCgpWYXJpYWJsZSBpbnB1dHMKYGBge3J9CiNHb2xkIFN0YW5kYXJkIE5ldHdvcmsKZ29sZEZpbGUgPC0gIndrMkFESERmbXJpX1N1YjAzNS5jc3YiCmBgYAoKSGVscGVyOiByZWFkcyBhbmQgdHJhbnNwb3NlcyBkYXRhIHRhYmxlCmBgYHtyfQojTm90ZTogZGVmYXVsdCBoZWFkZXI9VFJVRSwgd2hpY2ggaXMgdGhlIGNhc2Ugd2hlbiBicmFpbiByZWdpb25zIGFyZSBzcGVjaWZpZWQKcmVhZC50Y3N2ID0gZnVuY3Rpb24oZmlsZSwgaGVhZGVyPVRSVUUsIHNlcD0iLCIsIC4uLikgewoKICBuID0gbWF4KGNvdW50LmZpZWxkcyhmaWxlLCBzZXA9c2VwKSwgbmEucm09VFJVRSkKICB4ID0gcmVhZExpbmVzKGZpbGUpCgogIC5zcGxpdHZhciA9IGZ1bmN0aW9uKHgsIHNlcCwgbikgewogICAgdmFyID0gdW5saXN0KHN0cnNwbGl0KHgsIHNwbGl0PXNlcCkpCiAgICBsZW5ndGgodmFyKSA9IG4KICAgIHJldHVybih2YXIpCiAgfQoKICB4ID0gZG8uY2FsbChjYmluZCwgbGFwcGx5KHgsIC5zcGxpdHZhciwgc2VwPXNlcCwgbj1uKSkKICB4ID0gYXBwbHkoeCwgMSwgcGFzdGUsIGNvbGxhcHNlPXNlcCkgCiAgb3V0ID0gcmVhZC5jc3YodGV4dD14LCBzZXA9c2VwLCBoZWFkZXI9aGVhZGVyKQogIHJldHVybihvdXQpCgp9CmBgYAoKTG9hZCBhbmQgbm9ybWFsaXplIG9yaWdpbmFsIGdvbGQgc3RhbmRhcmQgbmV0d29yawpgYGB7cn0KZ29sZCA8LSByZWFkLnRjc3YoZ29sZEZpbGUpICNpbnB1dCBleHRyYSBwYXJhbWV0ZXIgaGVhZGVyPUZBTFNFIGlmIHVzaW5nIE1VTEFOIGRhdGEKaGVhZChnb2xkKQoKcHJpbnQobWluKGdvbGQpKQojVmVydGljYWwgc2hpZnQKZ29sZCA8LSBnb2xkIC0gbWluKGdvbGQpCiNTaG91bGQgYmUgMApwcmludChtaW4oZ29sZCkpCgojU2NhbGluZyB0byB1bml0IGxlbmd0aApnb2xkIDwtIGdvbGQgLyAobWF4KGdvbGQpIC0gbWluKGdvbGQpKQoKI05vcm1hbGl6ZWQgZ29sZCBzdGFuZGFyZCBuZXR3b3JrCmhlYWQoZ29sZCkKY2F0KCJtaW46IiwgbWluKGdvbGQpLCAibWF4OiIsIG1heChnb2xkKSkKYGBgCgpGaW5kIGFsbCBhcHBsaWNhYmxlIGZpbGVzIHcuci50LiBnb2xkIHN0YW5kYXJkIG5ldHdvcmsKYGBge3J9CiNBc3N1bWluZyB3ZSBhcmUgb25seSB1c2luZyBkYXRhIGdlbmVyYXRlZCBieSBNVUxBTgprZXkgPC0gZ3N1YigiZm1yaS4qXFwuY3N2JCIsICIiLCBnb2xkRmlsZSkKcGF0dGVybiA8LSBwYXN0ZShrZXksICJfIiwgc2VwPSIiKQoKYWxsZmlsZXMgPC0gbGlzdC5maWxlcyhnZXR3ZCgpLCBwYXR0ZXJuKQphbGxmaWxlcwpgYGAKCkhlbHBlcjogZ2V0cyBhbGwgZGlzY3JldGl6YXRpb24gcmVzdWx0cyByZWFkeSBmb3IgZXZhbHVhdGlvbgpgYGB7cn0KZ2V0ZmlsZSA8LSBmdW5jdGlvbihmaWxlKXsKICBkaXNjcmV0aXplZCA8LSByZWFkLnRjc3YoZmlsZSkKICByb3duYW1lcyA8LSBkaXNjcmV0aXplZFssMV0KICBkaXNjcmV0aXplZCA8LSBuYS5vbWl0KGRpc2NyZXRpemVkWywtMV0pCiAgI0Vuc3VyZXMgZGF0YSB1c2VzIDAgMSBpbnN0ZWFkIG9mIDEgMiwgMiAzLCBldGMuCiAgaWYobWF4KGRpc2NyZXRpemVkKSA+IDEpewogICAgZGlzY3JldGl6ZWQgPC0gZGlzY3JldGl6ZWQgLSBtYXgoZGlzY3JldGl6ZWQpICsgMQogIH0KICByZXR1cm4oZGlzY3JldGl6ZWQpCn0KYGBgCgpMb2FkIGFsbCBmaWxlcyBpbnRvIHZlY3RvcnMgdXNpbmcgaGVscGVyIGBnZXRmaWxlYApgYGB7cn0KZGlzYyA8LSBzYXBwbHkoYWxsZmlsZXMsIGdldGZpbGUpCmhlYWQoZGlzYykKYGBgCgpIZWxwZXI6IGNhbGN1bGF0ZSBhcmVhIHVuZGVyIGNvbm5lY3RlZCB0aW1lIHBvaW50cyBmb3Igb25lIG5vZGUKYGBge3J9CnBhcnRBcmVhIDwtIGZ1bmN0aW9uKG5vZGUpewogIG91dHB1dCA8LSBzdW0obm9kZVsyOihsZW5ndGgobm9kZSkgLSAxKV0sIG5hLnJtPVRSVUUpICsgKG5vZGVbMV0gKyBub2RlW2xlbmd0aChub2RlKV0pIC8gMgogIHJldHVybihvdXRwdXQpCn0KYGBgCgpIZWxwZXI6IGNhbGN1bGF0aW5nIGFnZ3JlZ2F0ZSBhcmVhIHVuZGVyIGFsbCBub2RlcyBvZiAqKm9uZSoqIGRpc2NyZXRpemF0aW9uIG91dHB1dCB1c2luZyBgcGFydEFyZWFgCmBgYHtyfQp0b3RBcmVhIDwtIGZ1bmN0aW9uKG1ldGhvZCl7CiAgcmV0dXJuKHN1bShzYXBwbHkobWV0aG9kLCBwYXJ0QXJlYSkpKQp9CmBgYAoKR2V0IHRoZSB0b3RhbCBhcmVhIChgdG90QXJlYWApIGZvciBlYWNoIGRpc2NyZXRpemF0aW9uIG91dHB1dApgYGB7cn0KYWxsQXJlYSA8LSBhcHBseShkaXNjLCAyLCB0b3RBcmVhKQphbGxBcmVhCmBgYAoKQ2FsY3VsYXRpbmcgYXJlYSB1bmRlciBhbGwgZ29sZCBub2RlcyAoZXhlY3V0ZSBvbmNlIG9ubHkpCmBgYHtyfQpnb2xkQXJlYSA8LSBzdW0oc2FwcGx5KGdvbGQsIHBhcnRBcmVhKSkKZ29sZEFyZWEKYGBgCgpGaW5kIGFic29sdXRlIGVycm9yIGZvciBlYWNoIG1ldGhvZApgYGB7cn0KZXJyb3IgPC0gYWJzKGFsbEFyZWEgLSBnb2xkQXJlYSkKYGBgCgpWaWV3IHJlc3VsdHMsIGJlc3QgbWV0aG9kIGZpcnN0CmBgYHtyfQpzb3J0KGVycm9yKQpgYGA=" target="_blank" title="User  at /Users/jann" download="area.Rmd"> ⇒ /Users/jann/github/discretization/area.Rmd</a><br />
 <!-- Don't edit the material above this line --></p>
 <p>Variable inputs</p>
 <pre class="r"><code>#Gold Standard Network
-goldFile &lt;- &quot;wk2fivefmriCS100S20N3000.csv&quot;</code></pre>
+goldFile &lt;- &quot;wk2ADHDfmri_Sub035.csv&quot;</code></pre>
 <p>Helper: reads and transposes data table</p>
-<pre class="r"><code>read.tcsv = function(file, header=TRUE, sep=&quot;,&quot;, ...) {
+<pre class="r"><code>#Note: default header=TRUE, which is the case when brain regions are specified
+read.tcsv = function(file, header=TRUE, sep=&quot;,&quot;, ...) {
 
   n = max(count.fields(file, sep=sep), na.rm=TRUE)
   x = readLines(file)
@@ -146,20 +147,54 @@ goldFile &lt;- &quot;wk2fivefmriCS100S20N3000.csv&quot;</code></pre>
 
 }</code></pre>
 <p>Load and normalize original gold standard network</p>
-<pre class="r"><code>gold &lt;- read.tcsv(goldFile, header=FALSE)</code></pre>
+<pre class="r"><code>gold &lt;- read.tcsv(goldFile) #input extra parameter header=FALSE if using MULAN data</code></pre>
 <pre><code>## Warning in readLines(file): incomplete final line found on
-## 'wk2fivefmriCS100S20N3000.csv'</code></pre>
-<pre class="r"><code># gold &lt;- na.omit(gold)
-head(gold)</code></pre>
-<pre><code>##            V1          V2         V3         V4           V5
-## 1 -0.01566926 -0.01276277 0.02360909 0.02098464 -0.002002217
-## 2 -0.20629362 -0.19190773 0.26760628 0.27228989 -0.019843056
-## 3 -0.52582560 -0.66596179 0.66027823 0.77826913  0.017586827
-## 4 -0.50065757 -1.17881880 1.03666757 1.24271178  0.243887935
-## 5  0.51823835 -1.27114714 1.28193597 1.37448693  0.471956167
-## 6  1.95969283 -0.85757663 1.27345908 0.98130242  0.366220924</code></pre>
+## 'wk2ADHDfmri_Sub035.csv'</code></pre>
+<pre class="r"><code>head(gold)</code></pre>
+<pre><code>##      IC05    IC08    IC09    IC15    IC16    IC17    IC18    IC19    IC20
+## 1 -0.1670  0.6124 -0.6083 -1.0672 -1.1235  0.8430 -1.8119  0.0160  0.1831
+## 2 -0.2452  1.1268 -0.6761 -0.8389  0.2609 -0.6795  0.1613  0.3218  0.3841
+## 3 -0.1037  1.0189 -0.2113  0.4664 -0.3661  0.3048  0.4163 -0.1360  1.3078
+## 4  1.2879  1.8015 -0.2176 -0.2867 -0.3348 -0.0687  1.2768 -0.3385  0.5213
+## 5  1.0776  0.7873  0.6125 -0.4063 -0.3375  0.0569 -1.9529 -0.4901 -0.5813
+## 6  0.3370 -0.0741 -0.2557 -0.6678 -1.1858  0.5141 -1.1541  0.4237 -1.6894
+##      IC23    IC24    IC26    IC27    IC29    IC31    IC33    IC36    IC37
+## 1 -1.2771 -1.0719 -1.6957 -0.5630 -0.0199 -0.4364 -0.2797  1.6073 -1.0639
+## 2 -0.5739 -0.5347  0.0077 -0.4033  0.4116  0.5122 -0.2619  0.5427  0.3307
+## 3 -0.0194 -1.5393 -0.1168  0.8741  0.6592 -0.1085  0.7449  0.2034  0.4741
+## 4  0.2025  0.1481  0.3905  0.8162  1.1720  0.0931  0.4341 -0.8771  0.5414
+## 5 -0.8191  0.6026 -0.2097 -0.1409  0.2915 -0.6608 -0.3285 -0.2602 -0.1196
+## 6 -0.0540 -0.6291 -0.7395  0.1424  0.4819 -1.5115 -1.4358  0.9242 -0.6922
+##      IC38    IC41    IC42    IC43    IC44    IC45    IC46    IC47    IC48
+## 1  0.2233 -0.3534 -0.0454  0.7498  0.3840  1.2897 -1.3234 -0.2419 -0.6714
+## 2 -0.0032 -0.5334 -0.7463  0.5150  1.2451 -0.2680 -1.5842  0.6017 -0.4128
+## 3  0.0007 -0.1857 -1.0742 -1.1503  0.3834  0.0585 -1.1236 -0.7885  0.1238
+## 4  0.3308  0.6862 -0.1635  0.3911 -0.9575  0.4090 -0.4388 -1.2358  0.4487
+## 5 -1.1266 -0.2373 -0.4082  0.6545 -1.0673  1.3414 -0.3080 -1.1053 -0.5348
+## 6 -0.8469 -0.4205  0.1681  1.0758 -0.8549  0.6065 -0.3308 -1.0695 -0.1449
+##      IC49    IC50    IC51    IC54    IC56    IC58    IC60    IC62    IC63
+## 1 -1.5178  0.9197  0.9137  1.4797  1.0294  0.2280 -2.0576 -0.2498 -0.6925
+## 2 -0.7885 -0.0938 -0.6810  0.7372  0.4309  0.3810 -0.7466 -0.8999 -0.5543
+## 3  1.0808 -1.0282 -0.2829  0.3104  1.0691  1.4499  0.1558 -0.3195 -0.0945
+## 4  0.5638 -0.5928 -1.0372  0.7892 -0.0639  0.3512  0.2117  0.1720  0.0496
+## 5 -1.1866  0.1088 -0.8695 -0.6576 -0.1265  0.1104 -0.7871  0.0217 -0.0799
+## 6 -0.1236  0.4508 -0.0625 -1.9904 -0.6003 -1.7384 -0.3255 -0.2767  0.2079
+##      IC64    IC65    IC66    IC67    IC68    IC69    IC71    IC72    IC73
+## 1  1.5631 -0.2664  0.5317 -0.5757  0.3645  0.2965 -1.4191 -0.8459 -1.3230
+## 2 -1.0120 -1.0276  0.1849 -0.9777 -0.0135 -0.5890 -0.4255 -0.0243 -0.8997
+## 3 -0.7021  0.0976 -1.8145 -0.6656 -0.1862 -1.1590 -0.6740 -0.6163 -0.7692
+## 4  1.0076 -0.4720 -1.4336 -0.6590 -0.1854 -0.7963 -0.2714 -0.2391 -1.6136
+## 5  1.3559 -0.2812  0.0208  0.1086 -0.2100  0.1180 -0.7244  0.3634 -0.8416
+## 6  0.7612  0.6098  0.9126  0.0854 -0.5553  0.2257  0.2414  0.6018 -0.9997
+##      IC74    IC75    IC76    IC77
+## 1 -0.3217 -0.4100 -0.3848 -1.3361
+## 2  1.0994  0.5605 -0.6506  0.5132
+## 3 -0.5040 -0.5161 -1.3038 -0.5070
+## 4 -0.2247 -0.8975 -2.2323 -0.1872
+## 5 -0.2256 -0.8907 -1.1019 -0.6837
+## 6  0.1371 -1.5582  0.3417 -0.1612</code></pre>
 <pre class="r"><code>print(min(gold))</code></pre>
-<pre><code>## [1] -5.145563</code></pre>
+<pre><code>## [1] -5.9939</code></pre>
 <pre class="r"><code>#Vertical shift
 gold &lt;- gold - min(gold)
 #Should be 0
@@ -170,28 +205,70 @@ gold &lt;- gold / (max(gold) - min(gold))
 
 #Normalized gold standard network
 head(gold)</code></pre>
-<pre><code>##          V1        V2        V3        V4        V5
-## 1 0.6336114 0.6339704 0.6384628 0.6381387 0.6352995
-## 2 0.6100667 0.6118436 0.6685998 0.6691783 0.6330959
-## 3 0.5706002 0.5532915 0.7171001 0.7316736 0.6377190
-## 4 0.5737088 0.4899467 0.7635893 0.7890385 0.6656702
-## 5 0.6995562 0.4785429 0.7938832 0.8053145 0.6938398
-## 6 0.8775954 0.5296244 0.7928362 0.7567509 0.6807800</code></pre>
+<pre><code>##        IC05      IC08      IC09      IC15      IC16      IC17      IC18
+## 1 0.5142940 0.5830855 0.4753440 0.4348406 0.4298714 0.6034387 0.3691118
+## 2 0.5073919 0.6284875 0.4693598 0.4549908 0.5520614 0.4690597 0.5432705
+## 3 0.5198810 0.6189640 0.5103840 0.5701992 0.4967211 0.5559361 0.5657773
+## 4 0.6427065 0.6880378 0.5098280 0.5037291 0.4994837 0.5229702 0.6417268
+## 5 0.6241450 0.5985225 0.5830943 0.4931729 0.4992454 0.5340559 0.3566669
+## 6 0.5587781 0.5224936 0.5064652 0.4700924 0.4243727 0.5744093 0.4271706
+##        IC19      IC20      IC23      IC24      IC26      IC27      IC29
+## 1 0.5304460 0.5451946 0.4163144 0.4344257 0.3793679 0.4793423 0.5272774
+## 2 0.5574365 0.5629352 0.4783802 0.4818401 0.5297134 0.4934377 0.5653624
+## 3 0.5170302 0.6444629 0.5273215 0.3931720 0.5187248 0.6061836 0.5872161
+## 4 0.4991571 0.5750448 0.5469069 0.5421054 0.5635001 0.6010733 0.6324769
+## 5 0.4857766 0.4777271 0.4567384 0.5822205 0.5105252 0.5165977 0.5547622
+## 6 0.5664304 0.3799239 0.5242676 0.4735082 0.4637640 0.5416023 0.5715673
+##        IC31      IC33      IC36      IC37      IC38      IC41      IC42
+## 1 0.4905162 0.5043469 0.6708974 0.4351318 0.5487427 0.4978420 0.5250267
+## 2 0.5742416 0.5059180 0.5769336 0.5582220 0.5287514 0.4819548 0.4631638
+## 3 0.5194574 0.5947802 0.5469863 0.5708788 0.5290956 0.5126435 0.4342227
+## 4 0.5372510 0.5673483 0.4516192 0.5768189 0.5582309 0.5895992 0.5146030
+## 5 0.4707102 0.5000397 0.5060680 0.5184777 0.4295978 0.5080892 0.4930052
+## 6 0.3956257 0.4023072 0.6106056 0.4679388 0.4542847 0.4919196 0.5438706
+##        IC43      IC44      IC45      IC46      IC47      IC48      IC49
+## 1 0.5952127 0.5629264 0.6428653 0.4122278 0.5076832 0.4697747 0.3950697
+## 2 0.5744887 0.6389289 0.5053796 0.3892091 0.5821411 0.4925992 0.4594392
+## 3 0.4275060 0.5628735 0.5341971 0.4298626 0.4594392 0.5399606 0.6244274
+## 4 0.5635531 0.4445229 0.5651330 0.4903044 0.4199596 0.5686370 0.5787959
+## 5 0.5868013 0.4348317 0.6474285 0.5018491 0.4314778 0.4818313 0.4243021
+## 6 0.6239861 0.4535786 0.5825647 0.4998367 0.4346376 0.5162446 0.5181246
+##        IC50      IC51      IC54      IC56      IC58      IC60      IC62
+## 1 0.6102084 0.6096788 0.6596351 0.6198907 0.5491575 0.3474258 0.5069859
+## 2 0.5207548 0.4689274 0.5941006 0.5670659 0.5626616 0.4631374 0.4496068
+## 3 0.4382828 0.5040645 0.5564303 0.6233947 0.6570049 0.5427850 0.5008341
+## 4 0.4767121 0.4374884 0.5986902 0.5233939 0.5600314 0.5477189 0.5442149
+## 5 0.5386367 0.4522900 0.4709927 0.5178686 0.5387779 0.4595627 0.5309491
+## 6 0.5688223 0.5235174 0.3533570 0.4760501 0.3755991 0.5003045 0.5046117
+##        IC63      IC64      IC65      IC66      IC67      IC68      IC69
+## 1 0.4679123 0.6669962 0.5055208 0.5759627 0.4782213 0.5612053 0.5552035
+## 2 0.4801102 0.4397126 0.4383357 0.5453534 0.4427400 0.5278423 0.4770475
+## 3 0.5206930 0.4670650 0.5376482 0.3688823 0.4702866 0.5125994 0.4267381
+## 4 0.5334116 0.6179666 0.4873741 0.4025013 0.4708691 0.5126700 0.4587507
+## 5 0.5219817 0.6487083 0.5042145 0.5308696 0.5386191 0.5104988 0.5394487
+## 6 0.5473835 0.5962189 0.5828560 0.6095817 0.5365714 0.4800219 0.5489545
+##        IC71      IC72      IC73      IC74      IC75      IC76      IC77
+## 1 0.4037811 0.4543729 0.4122631 0.5006399 0.4928464 0.4950706 0.4111069
+## 2 0.4914783 0.5268890 0.4496244 0.6260691 0.5785047 0.4716105 0.5743299
+## 3 0.4695452 0.4746379 0.4611426 0.4845497 0.4834818 0.4139578 0.4842849
+## 4 0.5050795 0.5079303 0.3866142 0.5092013 0.4498186 0.3320065 0.5125111
+## 5 0.4650968 0.5611082 0.4547525 0.5091219 0.4504188 0.4317779 0.4686890
+## 6 0.5503403 0.5821499 0.4407982 0.5411345 0.3915039 0.5591929 0.5148060</code></pre>
 <pre class="r"><code>cat(&quot;min:&quot;, min(gold), &quot;max:&quot;, max(gold))</code></pre>
 <pre><code>## min: 0 max: 1</code></pre>
 <p>Find all applicable files w.r.t. gold standard network</p>
 <pre class="r"><code>#Assuming we are only using data generated by MULAN
-pattern &lt;- gsub(&quot;fmri.*\\.csv$&quot;, &quot;&quot;, goldFile)
-pattern &lt;- paste(pattern, &quot;_&quot;, sep=&quot;&quot;)
+key &lt;- gsub(&quot;fmri.*\\.csv$&quot;, &quot;&quot;, goldFile)
+pattern &lt;- paste(key, &quot;_&quot;, sep=&quot;&quot;)
 
 allfiles &lt;- list.files(getwd(), pattern)
 allfiles</code></pre>
-<pre><code>##  [1] &quot;wk2five_bikmeans.csv&quot;       &quot;wk2five_equalfrequency.csv&quot;
-##  [3] &quot;wk2five_equalwidth.csv&quot;     &quot;wk2five_erdals_1.csv&quot;      
-##  [5] &quot;wk2five_fi.csv&quot;             &quot;wk2five_gallo.csv&quot;         
-##  [7] &quot;wk2five_kmeans.csv&quot;         &quot;wk2five_maxxmax.csv&quot;       
-##  [9] &quot;wk2five_mean.csv&quot;           &quot;wk2five_median.csv&quot;        
-## [11] &quot;wk2five_topx.csv&quot;           &quot;wk2five_tsd.csv&quot;</code></pre>
+<pre><code>##  [1] &quot;wk2ADHD_bikmeans.csv&quot;       &quot;wk2ADHD_equalfrequency.csv&quot;
+##  [3] &quot;wk2ADHD_equalwidth.csv&quot;     &quot;wk2ADHD_erdals_1.csv&quot;      
+##  [5] &quot;wk2ADHD_fi.csv&quot;             &quot;wk2ADHD_gallo.csv&quot;         
+##  [7] &quot;wk2ADHD_kmeans.csv&quot;         &quot;wk2ADHD_maxxmax_50.csv&quot;    
+##  [9] &quot;wk2ADHD_mean.csv&quot;           &quot;wk2ADHD_median.csv&quot;        
+## [11] &quot;wk2ADHD_topx_50.csv&quot;        &quot;wk2ADHD_tsd.csv&quot;</code></pre>
 <p>Helper: gets all discretization results ready for evaluation</p>
 <pre class="r"><code>getfile &lt;- function(file){
   discretized &lt;- read.tcsv(file)
@@ -204,39 +281,43 @@ allfiles</code></pre>
   return(discretized)
 }</code></pre>
 <p>Load all files into vectors using helper <code>getfile</code></p>
-<pre class="r"><code>disc &lt;- sapply(allfiles, getfile)</code></pre>
-<pre><code>## Warning in readLines(file): incomplete final line found on
-## 'wk2five_bikmeans.csv'</code></pre>
-<pre><code>## Warning in readLines(file): incomplete final line found on 'wk2five_fi.csv'</code></pre>
-<pre><code>## Warning in readLines(file): incomplete final line found on
-## 'wk2five_topx.csv'</code></pre>
-<pre><code>## Warning in readLines(file): incomplete final line found on
-## 'wk2five_tsd.csv'</code></pre>
-<pre class="r"><code>disc</code></pre>
-<pre><code>##       wk2five_bikmeans.csv wk2five_equalfrequency.csv
-## Gene1 Numeric,3000         Numeric,3000              
-## Gene2 Numeric,3000         Numeric,3000              
-## Gene3 Numeric,3000         Numeric,3000              
-## Gene4 Numeric,3000         Numeric,3000              
-## Gene5 Numeric,3000         Numeric,3000              
-##       wk2five_equalwidth.csv wk2five_erdals_1.csv wk2five_fi.csv
-## Gene1 Numeric,3000           Numeric,2999         Integer,3000  
-## Gene2 Numeric,3000           Numeric,2999         Integer,3000  
-## Gene3 Numeric,3000           Numeric,2999         Integer,3000  
-## Gene4 Numeric,3000           Numeric,2999         Integer,3000  
-## Gene5 Numeric,3000           Numeric,2999         Integer,3000  
-##       wk2five_gallo.csv wk2five_kmeans.csv wk2five_maxxmax.csv
-## Gene1 Numeric,3000      Numeric,3000       Numeric,3000       
-## Gene2 Numeric,3000      Numeric,3000       Numeric,3000       
-## Gene3 Numeric,3000      Numeric,3000       Numeric,3000       
-## Gene4 Numeric,3000      Numeric,3000       Numeric,3000       
-## Gene5 Numeric,3000      Numeric,3000       Numeric,3000       
-##       wk2five_mean.csv wk2five_median.csv wk2five_topx.csv wk2five_tsd.csv
-## Gene1 Numeric,3000     Numeric,3000       Integer,3000     Integer,2999   
-## Gene2 Numeric,3000     Numeric,3000       Integer,3000     Integer,2999   
-## Gene3 Numeric,3000     Numeric,3000       Integer,3000     Integer,2999   
-## Gene4 Numeric,3000     Numeric,3000       Integer,3000     Integer,2999   
-## Gene5 Numeric,3000     Numeric,3000       Integer,3000     Integer,2999</code></pre>
+<pre class="r"><code>disc &lt;- sapply(allfiles, getfile)
+head(disc)</code></pre>
+<pre><code>##      wk2ADHD_bikmeans.csv wk2ADHD_equalfrequency.csv
+## IC05 Numeric,204          Numeric,204               
+## IC08 Numeric,204          Numeric,204               
+## IC09 Numeric,204          Numeric,204               
+## IC15 Numeric,204          Numeric,204               
+## IC16 Numeric,204          Numeric,204               
+## IC17 Numeric,204          Numeric,204               
+##      wk2ADHD_equalwidth.csv wk2ADHD_erdals_1.csv wk2ADHD_fi.csv
+## IC05 Numeric,204            Numeric,203          Numeric,204   
+## IC08 Numeric,204            Numeric,203          Numeric,204   
+## IC09 Numeric,204            Numeric,203          Numeric,204   
+## IC15 Numeric,204            Numeric,203          Numeric,204   
+## IC16 Numeric,204            Numeric,203          Numeric,204   
+## IC17 Numeric,204            Numeric,203          Numeric,204   
+##      wk2ADHD_gallo.csv wk2ADHD_kmeans.csv wk2ADHD_maxxmax_50.csv
+## IC05 Numeric,204       Numeric,204        Numeric,204           
+## IC08 Numeric,204       Numeric,204        Numeric,204           
+## IC09 Numeric,204       Numeric,204        Numeric,204           
+## IC15 Numeric,204       Numeric,204        Numeric,204           
+## IC16 Numeric,204       Numeric,204        Numeric,204           
+## IC17 Numeric,204       Numeric,204        Numeric,204           
+##      wk2ADHD_mean.csv wk2ADHD_median.csv wk2ADHD_topx_50.csv
+## IC05 Numeric,204      Numeric,204        Numeric,204        
+## IC08 Numeric,204      Numeric,204        Numeric,204        
+## IC09 Numeric,204      Numeric,204        Numeric,204        
+## IC15 Numeric,204      Numeric,204        Numeric,204        
+## IC16 Numeric,204      Numeric,204        Numeric,204        
+## IC17 Numeric,204      Numeric,204        Numeric,204        
+##      wk2ADHD_tsd.csv
+## IC05 Numeric,203    
+## IC08 Numeric,203    
+## IC09 Numeric,203    
+## IC15 Numeric,203    
+## IC16 Numeric,203    
+## IC17 Numeric,203</code></pre>
 <p>Helper: calculate area under connected time points for one node</p>
 <pre class="r"><code>partArea &lt;- function(node){
   output &lt;- sum(node[2:(length(node) - 1)], na.rm=TRUE) + (node[1] + node[length(node)]) / 2
@@ -249,38 +330,38 @@ allfiles</code></pre>
 <p>Get the total area (<code>totArea</code>) for each discretization output</p>
 <pre class="r"><code>allArea &lt;- apply(disc, 2, totArea)
 allArea</code></pre>
-<pre><code>##       wk2five_bikmeans.csv wk2five_equalfrequency.csv 
-##                     9381.5                     7496.5 
-##     wk2five_equalwidth.csv       wk2five_erdals_1.csv 
-##                    12277.0                    14518.0 
-##             wk2five_fi.csv          wk2five_gallo.csv 
-##                        0.0                     7194.5 
-##         wk2five_kmeans.csv        wk2five_maxxmax.csv 
-##                     8828.5                      970.0 
-##           wk2five_mean.csv         wk2five_median.csv 
-##                     8017.5                     7496.5 
-##           wk2five_topx.csv            wk2five_tsd.csv 
-##                     7501.5                     7263.0</code></pre>
+<pre><code>##       wk2ADHD_bikmeans.csv wk2ADHD_equalfrequency.csv 
+##                     6643.0                     4977.0 
+##     wk2ADHD_equalwidth.csv       wk2ADHD_erdals_1.csv 
+##                     4825.0                     3190.5 
+##             wk2ADHD_fi.csv          wk2ADHD_gallo.csv 
+##                  -514446.5                     4569.5 
+##         wk2ADHD_kmeans.csv     wk2ADHD_maxxmax_50.csv 
+##                     4852.0                      715.0 
+##           wk2ADHD_mean.csv         wk2ADHD_median.csv 
+##                     4906.5                     4977.0 
+##        wk2ADHD_topx_50.csv            wk2ADHD_tsd.csv 
+##                     5025.5                     4991.5</code></pre>
 <p>Calculating area under all gold nodes (execute once only)</p>
 <pre class="r"><code>goldArea &lt;- sum(sapply(gold, partArea))
 goldArea</code></pre>
-<pre><code>## [1] 9378.366</code></pre>
+<pre><code>## [1] 5262.936</code></pre>
 <p>Find absolute error for each method</p>
 <pre class="r"><code>error &lt;- abs(allArea - goldArea)</code></pre>
 <p>View results, best method first</p>
 <pre class="r"><code>sort(error)</code></pre>
-<pre><code>##       wk2five_bikmeans.csv         wk2five_kmeans.csv 
-##                   3.134298                 549.865702 
-##           wk2five_mean.csv           wk2five_topx.csv 
-##                1360.865702                1876.865702 
-## wk2five_equalfrequency.csv         wk2five_median.csv 
-##                1881.865702                1881.865702 
-##            wk2five_tsd.csv          wk2five_gallo.csv 
-##                2115.365702                2183.865702 
-##     wk2five_equalwidth.csv       wk2five_erdals_1.csv 
-##                2898.634298                5139.634298 
-##        wk2five_maxxmax.csv             wk2five_fi.csv 
-##                8408.365702                9378.365702</code></pre>
+<pre><code>##        wk2ADHD_topx_50.csv            wk2ADHD_tsd.csv 
+##                   237.4361                   271.4361 
+## wk2ADHD_equalfrequency.csv         wk2ADHD_median.csv 
+##                   285.9361                   285.9361 
+##           wk2ADHD_mean.csv         wk2ADHD_kmeans.csv 
+##                   356.4361                   410.9361 
+##     wk2ADHD_equalwidth.csv          wk2ADHD_gallo.csv 
+##                   437.9361                   693.4361 
+##       wk2ADHD_bikmeans.csv       wk2ADHD_erdals_1.csv 
+##                  1380.0639                  2072.4361 
+##     wk2ADHD_maxxmax_50.csv             wk2ADHD_fi.csv 
+##                  4547.9361                519709.4361</code></pre>
 
 
 
