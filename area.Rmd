@@ -14,14 +14,11 @@ library(DataComputing)
 ```
 *Source file* 
 ```{r, results='asis', echo=FALSE}
-includeSourceDocuments()
+includeSourceDocuments("/Users/jann/github/discretization/area.Rmd")
 ```
 <!-- Don't edit the material above this line -->
 ```{r include=FALSE}
 options(scipen=999)
-```
-```{r}
-
 ```
 
 Variable inputs
@@ -69,14 +66,6 @@ gold <- gold / (max(gold) - min(gold))
 #Normalized gold standard network
 head(gold)
 cat("min:", min(gold), "max:", max(gold))
-# 
-# #Vectors for each node of gold standard network
-# v1 <- gold$V1
-# v2 <- gold$V2
-# v3 <- gold$V3
-# v4 <- gold$V4
-# v5 <- gold$V5
-# goldV <- c(v1, v2, v3, v4, v5)
 ```
 
 Find all applicable files w.r.t. gold standard network
@@ -145,38 +134,3 @@ View results, best method first
 ```{r}
 sort(error)
 ```
-
-
-<!-- Helper: calculates score for a discretization result -->
-<!-- ```{r} -->
-<!-- score <- function(discretized){ -->
-<!--   x1 <- discretized$Gene1 -->
-<!--   x2 <- discretized$Gene2 -->
-<!--   x3 <- discretized$Gene3 -->
-<!--   x4 <- discretized$Gene4 -->
-<!--   x5 <- discretized$Gene5 -->
-<!--   totdiff <- sum(abs(x1 - v1), abs(x2 - v2), abs(x3 - v3), abs(x4 - v4), abs(x5 - v5)) -->
-<!--   return(totdiff) -->
-<!-- } -->
-<!-- ``` -->
-
-<!-- Apply all `disc` files to helper `score` -->
-<!-- ```{r} -->
-<!-- scores <- sapply(as.data.frame(disc), score) -->
-<!-- ``` -->
-
-<!-- View results -->
-<!-- ```{r} -->
-<!-- sort(scores, decreasing = TRUE) -->
-<!-- ``` -->
-
-
-
-<!-- old -->
-<!-- ```{r} -->
-<!-- time <- c(1:length(gold)) -->
-<!-- gold <- v1 -->
-<!-- disc <- discretized$Gene1 -->
-<!-- df <- data.frame(time, gold, disc) -->
-<!-- df <- df %>% gather(datatype, value, c(gold, disc)) -->
-<!-- ``` -->
