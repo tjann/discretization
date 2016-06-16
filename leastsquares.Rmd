@@ -24,7 +24,7 @@ options(scipen=999)
 Variable inputs:
 ```{r}
 #Gold Standard Network
-goldFile <- "wk2CTRLfmri_Sub105.csv"
+goldFile <- "wk2fiftyfmriCS100S50N3000.csv"
 ```
 
 Helper: reads and transposes data table
@@ -122,17 +122,3 @@ View results, best method first
 ```{r}
 sort(scores)
 ```
-
-old
-<!-- Helper: calculates score for a discretization result -->
-<!-- ```{r} -->
-<!-- score <- function(discretized){ -->
-<!--   x1 <- discretized$Gene1 -->
-<!--   x2 <- discretized$Gene2 -->
-<!--   x3 <- discretized$Gene3 -->
-<!--   x4 <- discretized$Gene4 -->
-<!--   x5 <- discretized$Gene5 -->
-<!--   totdiff <- sum(abs(x1 - v1), na.rm=TRUE) + sum(abs(x2 - v2), na.rm=TRUE) + sum(abs(x3 - v3), na.rm=TRUE) + sum(abs(x4 - v4), na.rm=TRUE) + sum(abs(x5 - v5), na.rm=TRUE) -->
-<!--   return(totdiff) -->
-<!-- } -->
-<!-- ``` -->
