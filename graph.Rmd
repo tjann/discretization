@@ -1,5 +1,5 @@
 ---
-title: "Case Study: Graphical Comparison of Gold Standard and Booleanized Data"
+title: "Case Study: Graphical Comparison of Raw and Booleanized Data"
 author: ""
 date: ""
 output: 
@@ -25,7 +25,7 @@ options(scipen=999)
 Variable inputs:
 ```{r}
 #Determine how many points you want to look at
-alpha <- 10
+alpha <- 90
 #Gold Standard Network
 goldFile <- "wk2fivefmriCS100S20N3000.csv"
 #Discretized Results
@@ -53,32 +53,32 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 }
 ```
 
-Load and normalize original gold standard network
+Load and normalize original network
 ```{r}
-gold <- read.tcsv(goldFile, header=FALSE)[1:alpha,]
-gold <- na.omit(gold)
-head(gold)
+raw <- read.tcsv(goldFile, header=FALSE)[1:alpha,]
+raw <- na.omit(raw)
+head(raw)
 
 #Vertical shift
-print(min(gold))
-gold <- gold - min(gold)
+print(min(raw))
+raw <- raw - min(raw)
 #Should be 0
-print(min(gold))
+print(min(raw))
 
 #Scaling to unit length
-gold <- gold / (max(gold) - min(gold))
+raw <- raw / (max(raw) - min(raw))
 
-#Normalized gold standard network
-head(gold)
-print(min(gold))
-print(max(gold))
+#Normalized original
+head(raw)
+print(min(raw))
+print(max(raw))
 
-#Vectors for each node of gold standard network
-v1 <- gold$V1
-v2 <- gold$V2
-v3 <- gold$V3
-v4 <- gold$V4
-v5 <- gold$V5
+#Vectors for each node of original
+v1 <- raw$V1
+v2 <- raw$V2
+v3 <- raw$V3
+v4 <- raw$V4
+v5 <- raw$V5
 ```
 
 Load a discretization output
@@ -91,11 +91,11 @@ head(discretized)
 
 Create a plottable data frame with all necessary information
 ```{r}
-time <- c(1:nrow(gold))
-gold <- v1
-disc <- discretized$Gene1
-df <- data.frame(time, gold, disc)
-df <- df %>% gather(datatype, value, c(gold, disc))
+time <- c(1:nrow(raw))
+raw <- v1
+binary <- discretized$Gene1
+df <- data.frame(time, raw, binary)
+df <- df %>% gather(datatype, value, c(raw, binary))
 ```
 
 Plot data frame
@@ -103,17 +103,23 @@ Plot data frame
 df %>% ggplot(aes(x = time, y = value, group=1)) + facet_wrap(~ datatype) + geom_point() + geom_line() + geom_area()
 ```
 
+Overlay plot
+```{r}
+df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype))
+```
+
+
 Using *exact* trapezoid rule to find area
 ```{r}
-discArea <- sum(disc[2:(length(gold) - 1)]) + (disc[1] + disc[length(gold)]) / 2
+binaryArea <- sum(binary[2:(length(raw) - 1)]) + (binary[1] + binary[length(raw)]) / 2
 
-goldArea <- sum(gold[2:(length(gold) - 1)]) + (gold[1] + gold[length(gold)]) / 2
+rawArea <- sum(raw[2:(length(raw) - 1)]) + (raw[1] + raw[length(raw)]) / 2
 ```
 
 Compare areas
 ```{r}
-discArea
-goldArea
+binaryArea
+rawArea
 ```
 
 
