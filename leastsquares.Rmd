@@ -1,5 +1,5 @@
 ---
-title: "Least Squares of Multiple Discretization Results for One Data Set"
+title: "Error of Multiple Discretization Results for One Data Set"
 author: "Tiffany Jann"
 date: ""
 output: 
