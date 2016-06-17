@@ -1,5 +1,5 @@
 ---
-title: "Least Squares of Multiple Discretization Results for One Data Set"
+title: "Localized Area of Multiple Discretization Results for One Data Set"
 author: "Tiffany Jann"
 date: ""
 output: 
@@ -8,23 +8,20 @@ output:
     fig_width: 5
 ---
 <!-- Don't edit in between this line and the one below -->
-```{r include=FALSE, echo=FALSE}
+```{r include=FALSE}
 # Don't delete this chunk if you are using the DataComputing package
 library(DataComputing)
+options(scipen=999)
 ```
 *Source file* 
 ```{r, results='asis', echo=FALSE}
-includeSourceDocuments("/Users/jann/github/discretization/leastsquares.Rmd")
+includeSourceDocuments("/Users/jann/github/discretization/localarea.Rmd")
 ```
 <!-- Don't edit the material above this line -->
-```{r include=FALSE}
-options(scipen=999)
-```
 
-Variable inputs:
+Variable inputs
 ```{r}
 #Gold Standard Network
-#Change header value to TRUE or FALSE (MULAN data will always be FALSE)
 goldFile <- "ADHD_Sub010fmri.csv"
 ```
 
@@ -65,7 +62,7 @@ gold <- gold - min(gold)
 #Should be 0
 print(min(gold))
 
-#Scaling to unit length
+# #Scaling to unit length
 gold <- gold / (max(gold) - min(gold))
 
 #Normalized gold standard network
@@ -82,7 +79,6 @@ pattern <- paste(key, "_", sep="")
 allfiles <- list.files(getwd(), pattern)
 allfiles
 
-#Separate the file names for those looking at time points from those looking at difference between times
 pointFiles <- allfiles[!grepl("tsd", allfiles) & !grepl("erdals", allfiles)]
 intervalFiles <- allfiles[grepl("tsd", allfiles) | grepl("erdals", allfiles)]
 pointFiles
@@ -95,7 +91,7 @@ getfile <- function(file){
   discretized <- read.tcsv(file)
   rownames <- discretized[,1]
   discretized <- na.omit(discretized[,-1])
-  #Ensures data uses 0 1 instead of 1 2
+  #Ensures data uses 0 1 instead of 1 2, 2 3, etc.
   if(max(discretized) > 1){
     discretized <- discretized - max(discretized) + 1
   }
@@ -103,7 +99,7 @@ getfile <- function(file){
 }
 ```
 
-Load all files using helper `getfile`
+Load all files into vectors using helper `getfile`
 ```{r}
 pointData <- sapply(pointFiles, getfile)
 intervalData <- sapply(intervalFiles, getfile)
@@ -111,25 +107,32 @@ head(pointData)
 head(intervalData)
 ```
 
-
-
-Helper: calculate aggregate error under all nodes of **one** discretization output
+Helper: returns a vector of areas for each time interval
 ```{r}
-score <- function(discretized){
-  methodError <- 0
-  for(node in 1:length(discretized)){
-    methodError <- methodError + sum( abs(discretized[node] - gold[node]), 1:length(discretized[node])) #this accounts for TSD
+nodeArea <- function(node){
+  output <- vector('numeric') #create empty vector
+  for(interval in 1:length(node) - 1){
+    output <- append(output, (node[interval] + node[interval + 1]) / 2 )
   }
-  return(methodError)
+  return(output)
 }
 ```
 
-Apply all `disc` files to helper `score`
-```{r, warning=FALSE}
-scores <- apply(pointData, 2, score)
+
+Helper: find the total difference in area for **one data set**
+```{r}
+diffArea <- function(method, data){
+  disc <- sapply(method, nodeArea)
+  orig <- sapply(gold, nodeArea)
+  return(sum((abs(disc-orig))))
+}
+```
+
+Get a vector of all discretization method's total difference in area
+```{r}
+scores <- apply(pointData, 2, diffArea, data=gold)
 ```
 
 View results, best method first
 ```{r}
 sort(scores)
-```

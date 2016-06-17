@@ -11,15 +11,13 @@ output:
 ```{r include=FALSE}
 # Don't delete this chunk if you are using the DataComputing package
 library(DataComputing)
+options(scipen=999)
 ```
 *Source file* 
 ```{r, results='asis', echo=FALSE}
 includeSourceDocuments("/Users/jann/github/discretization/area.Rmd")
 ```
 <!-- Don't edit the material above this line -->
-```{r include=FALSE}
-options(scipen=999)
-```
 
 Variable inputs
 ```{r}
@@ -58,10 +56,10 @@ print(min(gold))
 #Vertical shift
 gold <- gold - min(gold)
 #Should be 0
-# print(min(gold))
-# 
+print(min(gold))
+
 # #Scaling to unit length
-# gold <- gold / (max(gold) - min(gold))
+gold <- gold / (max(gold) - min(gold))
 
 #Normalized gold standard network
 head(gold)
@@ -76,6 +74,11 @@ pattern <- paste(key, "_", sep="")
 
 allfiles <- list.files(getwd(), pattern)
 allfiles
+
+pointFiles <- allfiles[!grepl("tsd", allfiles) & !grepl("erdals", allfiles)]
+intervalFiles <- allfiles[grepl("tsd", allfiles) | grepl("erdals", allfiles)]
+pointFiles
+intervalFiles
 ```
 
 Helper: gets all discretization results ready for evaluation
@@ -94,8 +97,10 @@ getfile <- function(file){
 
 Load all files into vectors using helper `getfile`
 ```{r}
-disc <- sapply(allfiles, getfile)
-head(disc)
+pointData <- sapply(pointFiles, getfile)
+intervalData <- sapply(intervalFiles, getfile)
+head(pointData)
+head(intervalData)
 ```
 
 Helper: calculate area under connected time points for one node
@@ -115,7 +120,7 @@ totArea <- function(method){
 
 Get the total area (`totArea`) for each discretization output
 ```{r}
-allArea <- apply(disc, 2, totArea)
+allArea <- apply(pointData, 2, totArea)
 allArea
 ```
 
