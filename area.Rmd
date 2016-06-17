@@ -24,7 +24,7 @@ options(scipen=999)
 Variable inputs
 ```{r}
 #Gold Standard Network
-goldFile <- "wk2fiftyfmriCS100S50N3000.csv"
+goldFile <- "ADHD_Sub010fmri.csv"
 ```
 
 Helper: reads and transposes data table
@@ -51,17 +51,17 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
 Load and normalize original gold standard network
 ```{r}
-gold <- read.tcsv(goldFile, header=FALSE) #input extra parameter header=FALSE if using MULAN data
+gold <- read.tcsv(goldFile) #input extra parameter header=FALSE if using MULAN data
 head(gold)
 
 print(min(gold))
 #Vertical shift
 gold <- gold - min(gold)
 #Should be 0
-print(min(gold))
-
-#Scaling to unit length
-gold <- gold / (max(gold) - min(gold))
+# print(min(gold))
+# 
+# #Scaling to unit length
+# gold <- gold / (max(gold) - min(gold))
 
 #Normalized gold standard network
 head(gold)
@@ -101,7 +101,7 @@ head(disc)
 Helper: calculate area under connected time points for one node
 ```{r}
 partArea <- function(node){
-  output <- sum(node[2:(length(node) - 1)]) + (node[1] + node[length(node)]) / 2
+  output <- sum(node[2:(length(node) - 1)], na.rm=TRUE) + (node[1] + node[length(node)]) / 2
   return(output)
 }
 ```

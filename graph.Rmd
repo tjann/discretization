@@ -58,6 +58,7 @@ Load and normalize original network
 raw <- read.tcsv(goldFile, header=FALSE)[1:alpha,]
 raw <- na.omit(raw)
 head(raw)
+# raw %>% ggplot(aes(x = ))
 
 #Vertical shift
 print(min(raw))
@@ -84,6 +85,7 @@ v5 <- raw$V5
 Load a discretization output
 ```{r}
 discretized <- read.tcsv(method, header=TRUE)[1:alpha,]
+head(discretized)
 rownames <- discretized[,1]
 discretized <- na.omit(discretized[,-1])
 head(discretized)
