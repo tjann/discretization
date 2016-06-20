@@ -22,12 +22,11 @@ includeSourceDocuments("/Users/jann/github/discretization/localarea.Rmd")
 Variable inputs
 ```{r}
 #Gold Standard Network
-goldFile = "forty_ninefmriCS100S20N204.csv"
+goldFile = "CTRL_Sub102fmri.csv"
 ```
 
 Helper: reads and transposes data table
 ```{r}
-#Note: header=FALSE if in silico data, else TRUE
 read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
   n = max(count.fields(file, sep=sep), na.rm=TRUE)
@@ -49,7 +48,8 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
 Load and normalize original gold standard network
 ```{r}
-gold = read.tcsv(goldFile, header=FALSE)
+#Note: header=FALSE if in silico data, else TRUE
+gold = read.tcsv(goldFile, header=T)
 
 #A difference vector gold for TSD and Erdal's (change between time points)
 intvlGold = as.data.frame(apply(gold, 2, diff))
