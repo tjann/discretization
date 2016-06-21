@@ -89,6 +89,7 @@ pattern = paste(key, "_", sep="")
 allfiles = list.files(getwd(), pattern)
 allfiles
 
+#seperating TSD and Erdal's from other files
 pointFiles = allfiles[!grepl("tsd", allfiles) & !grepl("erdals", allfiles)]
 intervalFiles = allfiles[grepl("tsd", allfiles) | grepl("erdals", allfiles)]
 pointFiles
@@ -101,7 +102,8 @@ getfile = function(file){
   discretized = read.tcsv(file)
   rownames = discretized[,1]
   discretized = na.omit(discretized[,-1])
-  #Ensures data uses 0 1 instead of 1 2
+  
+  #Ensure data uses 0 1 instead of 1 2
   if(max(discretized) > 1){
     discretized = discretized - max(discretized) + 1
   }
@@ -127,13 +129,11 @@ nodeAreas = function(node, goldNode){
     binIntercept = node[interval,] - binSlope * interval
     rawSlope = goldNode[right,] - goldNode[interval,]
     rawIntercept = goldNode[interval,] - rawSlope * interval
-
     integrand <- function(x) {abs((binSlope - rawSlope) * x + (binIntercept - rawIntercept))}
     integral = integrate(Vectorize(integrand), interval, right)
     output = output + integral$value
   }
   return(output)
-
 }
 ```
 
@@ -151,12 +151,15 @@ diffArea = function(method, standard){
 
 Obtain a **vector** of each discretization method's area **error**
 ```{r}
-scoresPoint = apply(pointData, 2, diffArea, standard=gold) #apply diffArea to each point method's data set
-scoresIntvl = apply(intervalData, 2, diffArea, standard=intvlGold) #apply diffArea to each interval method's data set
-scores = append(scoresPoint, scoresIntvl) #join results for sorting
+#apply diffArea to each point method's data set
+scoresPoint = apply(pointData, 2, diffArea, standard=gold)
+#apply diffArea to each interval method's data set
+scoresIntvl = apply(intervalData, 2, diffArea, standard=intvlGold)
+#join results for sorting
+scores = append(scoresPoint, scoresIntvl)
 ```
 
 View results, best method first
 ```{r}
-sort(scores) #display sorted results
+sort(scores)
 ```
