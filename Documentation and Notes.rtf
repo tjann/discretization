@@ -133,6 +133,7 @@ The first line takes every .txt file, replaces every tab inside with a comma, an
 \par 
 \par \hich\af39\dbch\af31505\loch\f39 \hich\f39 The third line will append \'93\loch\f39 \hich\f39 fmri\'94\loch\f39 \hich\f39  to the file name, before the \'93\loch\f39 \hich\f39 .csv\'94\loch\f39 . This is to keep consistency with the naming scheme above.
 
+<<<<<<< HEAD
 \par 
 \par \hich\af39\dbch\af31505\loch\f39 The last massive comman\hich\af39\dbch\af31505\loch\f39 d will create 11 copies for each data set with names corresponding to the 11 discretization methods we will run. This is necessary because GED PRO TOOLS doesn
 \hich\f39 \rquote \loch\f39 \hich\f39 t allow you to \'93\loch\f39 \hich\f39 Save As\'94\loch\f39 , but requires you to have a file ready to save into. The content of the\hich\af39\dbch\af31505\loch\f39 s\hich\af39\dbch\af31505\loch\f39 
@@ -305,3 +306,28 @@ ffffffffffffffffffffffffffffffff52006f006f007400200045006e0074007200790000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff000000000000000000000000000000000000000000000000
 0000000000000000000000000000000000000000000000000105000000000000}}
+=======
+\f0\fs28 \cf0 \CocoaLigature1 The first line takes every .txt file, replaces every tab inside with a comma, and saves a new file that ends in .csv (while taking out the .txt so that we don\'92t end up with .txt.csv).\
+\
+The second line will delete all .txt files in the directory.\
+\
+The third line will append \'93fmri\'94 to the file name, before the \'93.csv\'94. This is to keep consistency with the naming scheme above.\
+\
+The last massive command will create 11 copies for each data set with names corresponding to the 11 discretization methods we will run. This is necessary because GED PRO TOOLS doesn\'92t allow you to \'93Save As\'94, but requires you to have a file ready to save into. The content of these 11 placeholders do not matter, so we just copied the data in. GED PRO TOOLS will overwrite as you run it. \
+	\
+============================================================\
+\
+QUICK GUIDE TO GITHUB\
+\
+To push:\
+\
+	
+\f2\fs22 \CocoaLigature0 git add --all\
+	git commit -m \'93Enter your commit message\'93\
+	git push -u origin master
+\f0\fs28 \CocoaLigature1 \
+\
+To pull:\
+	
+\f2\fs22 \CocoaLigature0 git pull origin master}
+>>>>>>> 63095c4383c0edf71436449536c6526c3db2d3db
