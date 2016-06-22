@@ -22,11 +22,13 @@ includeSourceDocuments("graph.Rmd")
 Variable inputs:
 ```{r}
 #Determine how many points you want to look at
-alpha <- 10
+alpha <- 50
+#Which node do you want to look at?
+beta <- 10
 #Gold Standard Network
 goldFile <- "ADHD_Sub010fmri.csv"
 #Discretized Results
-method <- "ADHD_Sub010_mean.csv"
+method <- "ADHD_Sub010_twin.csv"
 ```
 
 Helper: reads and transposes data table
@@ -51,27 +53,24 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
 Load and normalize original network
 ```{r}
-raw <- read.tcsv(goldFile, header=T)[1:alpha,]
-raw <- na.omit(raw)
+gold <- read.tcsv(goldFile, header=T)[1:alpha,]
+gold <- na.omit(gold)
 #head(raw)
 # raw %>% ggplot(aes(x = ))
 
 #Vertical shift
-print(min(raw))
-raw <- raw - min(raw)
+print(min(gold))
+gold <- gold - min(gold)
 #Should be 0
-print(min(raw))
+print(min(gold))
 
 #Scaling to unit length
-raw <- raw / (max(raw) - min(raw))
+gold <- gold / (max(gold) - min(gold))
 
 #Normalized original
 #head(raw)
-print(min(raw))
-print(max(raw))
-
-#Vectors for each node of original
-v1 <- raw[[1]]
+print(min(gold))
+print(max(gold))
 ```
 
 Load a discretization output
@@ -80,62 +79,90 @@ discretized <- read.tcsv(method, header=TRUE)[1:alpha,]
 #head(discretized)
 rownames <- discretized[,1]
 discretized <- na.omit(discretized[,-1])
+discretized = discretized - min(discretized)
+discretized = discretized / (max(discretized) - min(discretized))
 #head(discretized)
 ```
 
 Create a plottable data frame with all necessary information
 ```{r}
-time <- c(1:nrow(raw))
-raw <- v1
-binary <- discretized[[1]]
-time
-raw
-binary
-dfraw <- data.frame(time, raw)
-dfbin <- data.frame(time, binary)
-
-df <- data.frame(time, raw, binary)
-df <- df %>% gather(datatype, value, c(raw, binary))
-```
-
-Plot data frame
-```{r}
-df %>% ggplot(aes(x = time, y = value, group=1)) + facet_wrap(~ datatype) + geom_point() + geom_line() + geom_area()
-```
-
-Overlay plot
-```{r, fig.width=9, fig.height=6}
-df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) +
+plotter = function(raw, binary, node, time){
+  raw = gold[[node]]
+  binary = discretized[[node]]
+  dfraw <- data.frame(time, raw)
+  dfbin <- data.frame(time, binary)
+  df <- data.frame(time, raw, binary)
+  df <- df %>% gather(datatype, value, c(raw, binary))
+  plot = ggplot(df, aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) +
   theme(
     axis.text = element_text(size = rel(1.5)),
     legend.text = element_text(size = rel(1.5)),
     legend.title = element_blank(),
     axis.title = element_text(size = rel(2))
   )
-``` 
-
-Overlay plot, annotated
-```{r, fig.width=9, fig.height=6}
-df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + geom_vline(xintercept = seq(1, alpha, by=1), alpha=0.4) + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) +
-  theme(
-    axis.text = element_text(size = rel(1.5)),
-    legend.text = element_text(size = rel(1.5)),
-    legend.title = element_blank(),
-    axis.title = element_text(size = rel(2))
-  )
-``` 
-
-
-Using integration to find difference in areas for each time interval
-```{r}
-
-binaryArea <- sum(binary[2:(length(raw) - 1)]) + (binary[1] + binary[length(raw)]) / 2
-
-rawArea <- sum(raw[2:(length(raw) - 1)]) + (raw[1] + raw[length(raw)]) / 2
+  print(plot)
+}
 ```
 
-Compare areas
 ```{r}
-binaryArea
-rawArea
+#Vectors for each node of original
+time <- c(1:nrow(gold))
+
+#using beta as "beta"
+# raw <- gold[[beta]]
+# binary <- discretized[[beta]]
+# dfraw <- data.frame(time, raw)
+# dfbin <- data.frame(time, binary)
+# 
+# df <- data.frame(time, raw, binary)
+# df <- df %>% gather(datatype, value, c(raw, binary))
+
+
+for (col in 1:beta){ #using beta as "up to beta"
+  plotter(raw, binary, col, time)
+}
+  
 ```
+
+
+<!-- Plot data frame -->
+<!-- ```{r} -->
+<!-- df %>% ggplot(aes(x = time, y = value, group=1)) + facet_wrap(~ datatype) + geom_point() + geom_line() + geom_area() -->
+<!-- ``` -->
+
+<!-- Overlay plot -->
+<!-- ```{r, fig.width=9, fig.height=6} -->
+<!-- df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) + -->
+<!--   theme( -->
+<!--     axis.text = element_text(size = rel(1.5)), -->
+<!--     legend.text = element_text(size = rel(1.5)), -->
+<!--     legend.title = element_blank(), -->
+<!--     axis.title = element_text(size = rel(2)) -->
+<!--   ) -->
+<!-- ```  -->
+
+<!-- Overlay plot, annotated -->
+<!-- ```{r, fig.width=9, fig.height=6} -->
+<!-- df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + geom_vline(xintercept = seq(1, alpha, by=1), alpha=0.4) + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) + -->
+<!--   theme( -->
+<!--     axis.text = element_text(size = rel(1.5)), -->
+<!--     legend.text = element_text(size = rel(1.5)), -->
+<!--     legend.title = element_blank(), -->
+<!--     axis.title = element_text(size = rel(2)) -->
+<!--   ) -->
+<!-- ```  -->
+
+
+<!-- Using integration to find difference in areas for each time interval -->
+<!-- ```{r} -->
+
+<!-- binaryArea <- sum(binary[2:(length(raw) - 1)]) + (binary[1] + binary[length(raw)]) / 2 -->
+
+<!-- rawArea <- sum(raw[2:(length(raw) - 1)]) + (raw[1] + raw[length(raw)]) / 2 -->
+<!-- ``` -->
+
+<!-- Compare areas -->
+<!-- ```{r} -->
+<!-- binaryArea -->
+<!-- rawArea -->
+<!-- ``` -->
