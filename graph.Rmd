@@ -46,7 +46,6 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
   x = apply(x, 1, paste, collapse=sep) 
   out = read.csv(text=x, sep=sep, header=header)
   return(out)
-
 }
 ```
 
@@ -54,7 +53,7 @@ Load and normalize original network
 ```{r}
 raw <- read.tcsv(goldFile, header=T)[1:alpha,]
 raw <- na.omit(raw)
-head(raw)
+#head(raw)
 # raw %>% ggplot(aes(x = ))
 
 #Vertical shift
@@ -67,7 +66,7 @@ print(min(raw))
 raw <- raw / (max(raw) - min(raw))
 
 #Normalized original
-head(raw)
+#head(raw)
 print(min(raw))
 print(max(raw))
 
@@ -78,10 +77,10 @@ v1 <- raw[[1]]
 Load a discretization output
 ```{r}
 discretized <- read.tcsv(method, header=TRUE)[1:alpha,]
-head(discretized)
+#head(discretized)
 rownames <- discretized[,1]
 discretized <- na.omit(discretized[,-1])
-head(discretized)
+#head(discretized)
 ```
 
 Create a plottable data frame with all necessary information
@@ -105,8 +104,25 @@ df %>% ggplot(aes(x = time, y = value, group=1)) + facet_wrap(~ datatype) + geom
 ```
 
 Overlay plot
-```{r}
-df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + geom_vline(xintercept = seq(1, alpha, by=1), alpha=0.4) + ylim(0, 1) + xlim(0,alpha)
+```{r, fig.width=9, fig.height=6}
+df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) +
+  theme(
+    axis.text = element_text(size = rel(1.5)),
+    legend.text = element_text(size = rel(1.5)),
+    legend.title = element_blank(),
+    axis.title = element_text(size = rel(2))
+  )
+``` 
+
+Overlay plot, annotated
+```{r, fig.width=9, fig.height=6}
+df %>% ggplot(aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + geom_vline(xintercept = seq(1, alpha, by=1), alpha=0.4) + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) +
+  theme(
+    axis.text = element_text(size = rel(1.5)),
+    legend.text = element_text(size = rel(1.5)),
+    legend.title = element_blank(),
+    axis.title = element_text(size = rel(2))
+  )
 ``` 
 
 
