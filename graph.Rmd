@@ -16,19 +16,18 @@ options(scipen=999)
 ```{r, results='asis', echo=FALSE}
 includeSourceDocuments("graph.Rmd")
 ```
-
 <!-- Don't edit the material above this line -->
 
 Variable inputs:
 ```{r}
-#Determine how many points you want to look at
-alpha <- 50
-#Which node do you want to look at?
-beta <- 10
-#Gold Standard Network
-goldFile <- "ADHD_Sub010fmri.csv"
-#Discretized Results
-method <- "ADHD_Sub010_twin.csv"
+## Determine how many points you want to look at
+alpha = 50
+## Up to/ which node do you want to look at?
+beta = 3
+## Gold Standard Network
+goldFile = "ADHD_Sub010fmri.csv"
+## Discretized Results
+method = "ADHD_Sub010_tsd.csv"
 ```
 
 Helper: reads and transposes data table
@@ -53,35 +52,21 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
 Load and normalize original network
 ```{r}
-gold <- read.tcsv(goldFile, header=T)[1:alpha,]
-gold <- na.omit(gold)
-#head(raw)
-# raw %>% ggplot(aes(x = ))
-
-#Vertical shift
-print(min(gold))
-gold <- gold - min(gold)
-#Should be 0
-print(min(gold))
-
-#Scaling to unit length
-gold <- gold / (max(gold) - min(gold))
-
-#Normalized original
-#head(raw)
-print(min(gold))
-print(max(gold))
-```
-
-Load a discretization output
-```{r}
-discretized <- read.tcsv(method, header=TRUE)[1:alpha,]
-#head(discretized)
-rownames <- discretized[,1]
-discretized <- na.omit(discretized[,-1])
-discretized = discretized - min(discretized)
-discretized = discretized / (max(discretized) - min(discretized))
-#head(discretized)
+gold = read.tcsv(goldFile, header=T)
+discretized = read.tcsv(method, header=T)
+discretized = na.omit(discretized[,-1])
+if(nrow(gold) != nrow(discretized)){
+  print("TSD or Erdal's detected")
+  gold = as.data.frame(apply(gold, 2, diff))[1:alpha,]
+  gold = gold - min(gold)
+  gold = gold / (max(gold) - min(gold))
+} else{
+  print("Time Point Data")
+  gold = na.omit(gold[1:alpha,])
+  gold = gold - min(gold)
+  gold = gold / (max(gold) - min(gold))
+}
+discretized = discretized[1:alpha,]
 ```
 
 Create a plottable data frame with all necessary information
@@ -89,13 +74,13 @@ Create a plottable data frame with all necessary information
 plotter = function(raw, binary, node, time){
   raw = gold[[node]]
   binary = discretized[[node]]
-  dfraw <- data.frame(time, raw)
-  dfbin <- data.frame(time, binary)
-  df <- data.frame(time, raw, binary)
-  df <- df %>% gather(datatype, value, c(raw, binary))
-  plot = ggplot(df, aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,1)) +
+  dfraw = data.frame(time, raw)
+  dfbin = data.frame(time, binary)
+  df = data.frame(time, raw, binary)
+  df = df %>% gather(datatype, value, c(raw, binary))
+  plot = ggplot(df, aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,2)) +
   theme(
-    axis.text = element_text(size = rel(1.5)),
+    axis.text = element_text(size = rel(1.3)),
     legend.text = element_text(size = rel(1.5)),
     legend.title = element_blank(),
     axis.title = element_text(size = rel(2))
@@ -106,16 +91,16 @@ plotter = function(raw, binary, node, time){
 
 ```{r}
 #Vectors for each node of original
-time <- c(1:nrow(gold))
+time = c(1:nrow(gold))
 
 #using beta as "beta"
-# raw <- gold[[beta]]
-# binary <- discretized[[beta]]
-# dfraw <- data.frame(time, raw)
-# dfbin <- data.frame(time, binary)
+# raw = gold[[beta]]
+# binary = discretized[[beta]]
+# dfraw = data.frame(time, raw)
+# dfbin = data.frame(time, binary)
 # 
-# df <- data.frame(time, raw, binary)
-# df <- df %>% gather(datatype, value, c(raw, binary))
+# df = data.frame(time, raw, binary)
+# df = df %>% gather(datatype, value, c(raw, binary))
 
 
 for (col in 1:beta){ #using beta as "up to beta"
@@ -156,9 +141,9 @@ for (col in 1:beta){ #using beta as "up to beta"
 <!-- Using integration to find difference in areas for each time interval -->
 <!-- ```{r} -->
 
-<!-- binaryArea <- sum(binary[2:(length(raw) - 1)]) + (binary[1] + binary[length(raw)]) / 2 -->
+<!-- binaryArea = sum(binary[2:(length(raw) - 1)]) + (binary[1] + binary[length(raw)]) / 2 -->
 
-<!-- rawArea <- sum(raw[2:(length(raw) - 1)]) + (raw[1] + raw[length(raw)]) / 2 -->
+<!-- rawArea = sum(raw[2:(length(raw) - 1)]) + (raw[1] + raw[length(raw)]) / 2 -->
 <!-- ``` -->
 
 <!-- Compare areas -->

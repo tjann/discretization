@@ -1,5 +1,5 @@
 ---
-title: "Localized Area of Multiple Discretization Results for One Data Set"
+title: "(Absolute) Area Between Curves of Multiple Discretization Results for One Data Set"
 author: "Tiffany Jann"
 date: ""
 output: 
@@ -9,7 +9,7 @@ output:
 ---
 <!-- Don't edit in between this line and the one below -->
 ```{r include=FALSE}
-# Don't delete this chunk if you are using the DataComputing package
+## Don't delete this chunk if you are using the DataComputing package
 library(DataComputing)
 options(scipen=999)
 ```
@@ -21,7 +21,7 @@ includeSourceDocuments("localarea.Rmd")
 
 Variable inputs
 ```{r}
-#Gold Standard Network Data
+## Gold Standard Network Data
 goldFile = "ADHD_Sub010fmri.csv"
 ```
 
@@ -48,48 +48,48 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
 Load and normalize original gold standard network
 ```{r}
-#Note: header=FALSE if in silico data, else TRUE
+## Note: header=FALSE if in silico data, else TRUE
 gold = read.tcsv(goldFile, header=T)
 
-#A difference vector gold for TSD and Erdal's (change between time points)
+## A difference vector gold for TSD and Erdal's (change between time points)
 intvlGold = as.data.frame(apply(gold, 2, diff))
 
-dim(gold)
-summary(gold)
-print(min(gold))
-#Vertical shift
+#dim(gold)
+#summary(gold)
+#print(min(gold))
+## Vertical shift
 gold = gold - min(gold)
-#Should be 0
-print(min(gold))
-#Scaling to unit length
+## Should be 0
+#print(min(gold))
+## Scaling to unit length
 gold = gold / (max(gold) - min(gold))
-#Normalized gold standard network
-cat("min:", min(gold), "max:", max(gold))
+## Normalized gold standard network
+#cat("min:", min(gold), "max:", max(gold))
 
-dim(intvlGold)
-summary(intvlGold)
-print(min(intvlGold))
-#Vertical shift
+#dim(intvlGold)
+#summary(intvlGold)
+#print(min(intvlGold))
+## Vertical shift
 intvlGold = intvlGold - min(intvlGold)
-#Should be 0
-print(min(intvlGold))
-#Scaling to unit length
+## Should be 0
+#print(min(intvlGold))
+## Scaling to unit length
 intvlGold = intvlGold / (max(intvlGold) - min(intvlGold))
-#Normalized gold standard network
-cat("min:", min(intvlGold), "max:", max(intvlGold))
+## Normalized gold standard network
+#cat("min:", min(intvlGold), "max:", max(intvlGold))
 ```
 
 Find all applicable files w.r.t. gold standard network
 ```{r}
-#make sure data file follows [identifying name]fmri[other unimportant identifiers].csv
+## Make sure data file follows [identifying name]fmri[other unimportant identifiers].csv
 key = gsub("fmri.*\\.csv$", "", goldFile)
 pattern = paste(key, "_", sep="")
 
-#gets files that start with [identifying name]_
+## Gets files that start with [identifying name]_
 allfiles = list.files(getwd(), pattern)
 allfiles
 
-#seperating TSD and Erdal's from other files
+## Seperating TSD and Erdal's from other files
 pointFiles = allfiles[!grepl("tsd", allfiles) & !grepl("erdals", allfiles)]
 intervalFiles = allfiles[grepl("tsd", allfiles) | grepl("erdals", allfiles)]
 pointFiles
@@ -103,7 +103,7 @@ getfile = function(file){
   rownames = discretized[,1]
   discretized = na.omit(discretized[,-1])
   
-  #Ensure data uses 0 1 instead of 1 2
+  ## Ensure data uses 0 1 instead of 1 2
   if(max(discretized) > 1){
     discretized = discretized - max(discretized) + 1
   }
@@ -115,15 +115,15 @@ Load all files into vectors using helper `getfile`
 ```{r}
 pointData = as.data.frame(sapply(pointFiles, getfile))
 intervalData = as.data.frame(sapply(intervalFiles, getfile))
-head(pointData)
-head(intervalData)
+#head(pointData)
+#head(intervalData)
 ```
 
 Helper: returns the sum of area errors in all `m - 1` time intervals for **one node**
 ```{r}
 nodeAreas = function(node, goldNode){
   output = 0
-  for(interval in 1:(nrow(node) - 1)){ #one interval at a time
+  for(interval in 1:(nrow(node) - 1)){ ## One interval at a time
     right = interval + 1
     binSlope = node[right,] - node[interval,]
     binIntercept = node[interval,] - binSlope * interval
@@ -142,7 +142,7 @@ Helper: obtain the sum of area error in all `n` nodes for **one data set**
 diffArea = function(method, standard){
   output = 0
   method = as.data.frame(method)
-  for(node in 1:(length(method))){ #apply nodeAreas to each node in this method
+  for(node in 1:(length(method))){ ## Apply nodeAreas to each node in this method
     output = output + nodeAreas(method[node], standard[node])
   }
   return(output)
@@ -151,11 +151,11 @@ diffArea = function(method, standard){
 
 Obtain a **vector** of each discretization method's area **error**
 ```{r}
-#apply diffArea to each point method's data set
+## Apply diffArea to each point method's data set
 scoresPoint = apply(pointData, 2, diffArea, standard=gold)
-#apply diffArea to each interval method's data set
+## Apply diffArea to each interval method's data set
 scoresIntvl = apply(intervalData, 2, diffArea, standard=intvlGold)
-#join results for sorting
+## Join results for sorting
 scores = append(scoresPoint, scoresIntvl)
 ```
 
