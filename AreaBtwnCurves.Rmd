@@ -1,8 +1,8 @@
 ---
-title: "(Absolute) Area Between Curves of Multiple Discretization Results for One Data Set"
+title: "(Absolute) Area Between Curves of Multiple Discretization Results for One Data Set TSD Compatible"
 author: "Tiffany Jann"
 date: ""
-output: 
+output:
   html_document:
     fig_height: 3
     fig_width: 5
@@ -15,7 +15,7 @@ options(scipen=999)
 ```
 *Source file* 
 ```{r, results='asis', echo=FALSE}
-includeSourceDocuments("localarea.Rmd")
+includeSourceDocuments("AreaBtwnCurves.Rmd")
 ```
 <!-- Don't edit the material above this line -->
 
@@ -52,9 +52,6 @@ Load and normalize original gold standard network
 ## Note: header=FALSE if in silico data, else TRUE
 gold = read.tcsv(goldFile, header=isPatientData)
 
-## A difference vector gold for TSD and Erdal's (change between time points)
-intvlGold = as.data.frame(apply(gold, 2, diff))
-
 #dim(gold)
 #summary(gold)
 #print(min(gold))
@@ -66,18 +63,6 @@ gold = gold - min(gold)
 gold = gold / (max(gold) - min(gold))
 ## Normalized gold standard network
 #cat("min:", min(gold), "max:", max(gold))
-
-#dim(intvlGold)
-#summary(intvlGold)
-#print(min(intvlGold))
-## Vertical shift
-intvlGold = intvlGold - min(intvlGold)
-## Should be 0
-#print(min(intvlGold))
-## Scaling to unit length
-intvlGold = intvlGold / (max(intvlGold) - min(intvlGold))
-## Normalized gold standard network
-#cat("min:", min(intvlGold), "max:", max(intvlGold))
 ```
 
 Find all applicable files w.r.t. gold standard network
@@ -87,14 +72,8 @@ key = gsub("fmri.*\\.csv$", "", goldFile)
 pattern = paste(key, "_", sep="")
 
 ## Gets files that start with [identifying name]_
-allfiles = list.files(getwd(), pattern)
-allfiles
-
-## Seperating TSD and Erdal's from other files
-pointFiles = allfiles[!grepl("tsd", allfiles) & !grepl("erdals", allfiles)]
-intervalFiles = allfiles[grepl("tsd", allfiles) | grepl("erdals", allfiles)]
-pointFiles
-intervalFiles
+allFiles = list.files(getwd(), pattern)
+allFiles
 ```
 
 Helper: gets all discretization results ready for evaluation
@@ -114,10 +93,7 @@ getfile = function(file){
 
 Load all files into vectors using helper `getfile`
 ```{r}
-pointData = as.data.frame(sapply(pointFiles, getfile))
-intervalData = as.data.frame(sapply(intervalFiles, getfile))
-#head(pointData)
-#head(intervalData)
+allData = as.data.frame(sapply(allFiles, getfile))
 ```
 
 Helper: returns the sum of area errors in all `m - 1` time intervals for **one node**
@@ -143,6 +119,9 @@ Helper: obtain the sum of area error in all `n` nodes for **one data set**
 diffArea = function(method, standard){
   output = 0
   method = as.data.frame(method)
+  if(nrow(method) != nrow(standard)){
+    method = rbind(method, rep(0.5, ncol(method)))
+  }
   for(node in 1:(length(method))){ ## Apply nodeAreas to each node in this method
     output = output + nodeAreas(method[node], standard[node])
   }
@@ -152,12 +131,8 @@ diffArea = function(method, standard){
 
 Obtain a **vector** of each discretization method's area **error**
 ```{r}
-## Apply diffArea to each point method's data set
-scoresPoint = apply(pointData, 2, diffArea, standard=gold)
-## Apply diffArea to each interval method's data set
-scoresIntvl = apply(intervalData, 2, diffArea, standard=intvlGold)
-## Join results for sorting
-scores = append(scoresPoint, scoresIntvl)
+## Apply diffArea to each method's data set
+scores = apply(allData, 2, diffArea, standard=gold)
 ```
 
 View results, best method first

@@ -21,13 +21,16 @@ includeSourceDocuments("graph.Rmd")
 Variable inputs:
 ```{r}
 ## Determine how many points you want to look at
-alpha = 50
+alpha = 35
 ## Up to/ which node do you want to look at?
-beta = 3
+beta = 9
 ## Gold Standard Network
 goldFile = "ADHD_Sub010fmri.csv"
+# goldFile = "wk4RNv2fmri.csv"
+isPatientData = T
 ## Discretized Results
-method = "ADHD_Sub010_tsd.csv"
+method = "ADHD_Sub010_median.csv"
+# method = "wk4RNv2_tsd.csv"
 ```
 
 Helper: reads and transposes data table
@@ -52,19 +55,31 @@ read.tcsv = function(file, header=TRUE, sep=",", ...) {
 
 Load and normalize original network
 ```{r}
-gold = read.tcsv(goldFile, header=T)
+## If in silico data, header=F, else header=T
+gold = read.tcsv(goldFile, header=isPatientData)
 discretized = read.tcsv(method, header=T)
 discretized = na.omit(discretized[,-1])
+if(max(discretized) > 1){
+    discretized = discretized - max(discretized) + 1
+  }
 if(nrow(gold) != nrow(discretized)){
   print("TSD or Erdal's detected")
   gold = as.data.frame(apply(gold, 2, diff))[1:alpha,]
   gold = gold - min(gold)
   gold = gold / (max(gold) - min(gold))
+  ymin = 0
+  ymax = 1
+  # ymin = -2.5
+  # ymax = 2.5
 } else{
   print("Time Point Data")
-  gold = na.omit(gold[1:alpha,])
+  gold = gold[1:alpha,]
   gold = gold - min(gold)
   gold = gold / (max(gold) - min(gold))
+  ymin = 0
+  ymax = 1
+  # ymin = -3
+  # ymax = 3
 }
 discretized = discretized[1:alpha,]
 ```
@@ -78,7 +93,7 @@ plotter = function(raw, binary, node, time){
   dfbin = data.frame(time, binary)
   df = data.frame(time, raw, binary)
   df = df %>% gather(datatype, value, c(raw, binary))
-  plot = ggplot(df, aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(0, 1) +  scale_x_continuous(breaks=seq(1,alpha,2)) +
+  plot = ggplot(df, aes(x = time, y = value)) + geom_point(aes(color=datatype)) + geom_line(data=dfraw, aes(x=time, y=raw), color="blue") + geom_line(data=dfbin, aes(x=time, y=binary), color="red") + geom_area(data=dfraw, aes(x=time, y=raw), alpha=0.5, fill="blue") + geom_area(data=dfbin, aes(x=time, y=binary), alpha=0.5, fill="red") + ylim(ymin, ymax) +  scale_x_continuous(breaks=seq(1,alpha,2)) +
   theme(
     axis.text = element_text(size = rel(1.3)),
     legend.text = element_text(size = rel(1.5)),
