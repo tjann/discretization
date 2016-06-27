@@ -2174,28 +2174,24 @@ public class GEDPROTOOLSView extends FrameView {
     private void BiKmeans(int d)
     {
         int k = level_of_discretization.getSelectedIndex()+2;
-        float [][] kmeansrows = new float [ActualProject.datamatrix[d].length][ActualProject.datamatrix[d][0].length];
-        float [][] kmeanscolumns = new float [ActualProject.datamatrix[d].length][ActualProject.datamatrix[d][0].length];
+        float [][] kmeansrows = new float [ActualProject.datamatrix[d].length][ActualProject.datamatrix[d][0].length]; //matrix with same dim as data
+        float [][] kmeanscolumns = new float [ActualProject.datamatrix[d].length][ActualProject.datamatrix[d][0].length]; //another matrix with same dim as data
 
+        for (int i=0; i<ActualProject.datamatrix[d].length; i++) //for as many rows
+            kmeansrows[i] = kmeans_1d(ActualProject.datamatrix[d][i], k+1); //fills in all the rows of kmeans row with kmeans_1d results
 
-        for (int i=0; i<ActualProject.datamatrix[d].length; i++)
-            kmeansrows[i] = kmeans_1d(ActualProject.datamatrix[d][i], k+1);
-
-
-
-
-        float [][] tmp = copydatasetsTrans(ActualProject.datamatrix[d]);
-        for (int i=0; i<tmp.length; i++)
-            tmp[i] = kmeans_1d(tmp[i], k+1);
+        float [][] tmp = copydatasetsTrans(ActualProject.datamatrix[d]); //copy array of original data
+        for (int i=0; i<tmp.length; i++) //for as many rows
+            tmp[i] = kmeans_1d(tmp[i], k+1); //assign to the rows of the copy kmeans(copy[row], k=discr. levels)
 
         tmp = copydatasetsTrans(tmp);
-        kmeanscolumns = tmp;
+        kmeanscolumns = tmp; //kmeanscolumns matrix becomes this weird thing
 
-        for (int i=0; i<ActualProject.datamatrix[d].length; i++)
-            for (int j=0; j<ActualProject.datamatrix[d][0].length; j++)
+        for (int i=0; i<ActualProject.datamatrix[d].length; i++) //for as many rows
+            for (int j=0; j<ActualProject.datamatrix[d][0].length; j++) //for as many columns
             {
                 int k_d=1;
-                while ((k_d)*(k_d)<=(kmeansrows[i][j]+1)*(kmeanscolumns[i][j]+1))
+                while ((k_d)*(k_d)<=(kmeansrows[i][j]+1)*(kmeanscolumns[i][j]+1)) //find k_d = (kmrowval ij + 1)(kmcol=weird thing ij + 1)
                     k_d++;
 
                 if ((kmeansrows[i][j]+1) == (k+1) && (kmeanscolumns[i][j]+1)== (k+1))
@@ -2203,10 +2199,7 @@ public class GEDPROTOOLSView extends FrameView {
                 else
                     ActualProject.datamatrix[d][i][j] = k_d-1;
             }
-                
-
-
-
+            
         ActualProject.updateStat();
         HeatMapScope.setSelectedIndex(0);
         datasetsview.getComponentAt(d).repaint();
@@ -2292,12 +2285,12 @@ public class GEDPROTOOLSView extends FrameView {
 
 
         //calculate initial centroids
-        float step = (float)Math.abs(orddata[orddata.length-1]-orddata[0])/(float)k;
-        float centroid = orddata[0] + step/2;
-        for (int i=0; i<k; i++)
+        float step = (float)Math.abs(orddata[orddata.length-1]-orddata[0])/(float)k; //step = half the diff of first and last time values of node
+        float centroid = orddata[0] + step/2; //first time point, half the step distance
+        for (int i=0; i<k; i++) //for the two points
         {
-            centroids[i] = centroid;
-            centroid+=step;            
+            centroids[i] = centroid; //assign the first element of centroids to be at first, "first time point, half the step distance"
+            centroid+=step;          //centroid increase by step, so the next one would be just a step ahead
         }
 
         // main loop
@@ -2310,7 +2303,7 @@ public class GEDPROTOOLSView extends FrameView {
         {
             change = false;
 
-            //assing points to centroids
+            //assign points to centroids
             for (int i=0; i<orddata.length; i++)
             {
                 int cluster = 0;
