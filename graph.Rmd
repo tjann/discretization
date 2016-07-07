@@ -21,16 +21,16 @@ includeSourceDocuments("graph.Rmd")
 Variable inputs:
 ```{r}
 ## Determine how many points you want to look at
-alpha = 35
+alpha = 10
 ## Up to/ which node do you want to look at?
-beta = 9
+beta = 1
 ## Gold Standard Network
 goldFile = "ADHD_Sub010fmri.csv"
 # goldFile = "wk4RNv2fmri.csv"
 isPatientData = T
 ## Discretized Results
-method = "ADHD_Sub010_median.csv"
-# method = "wk4RNv2_tsd.csv"
+method = "ADHD_Sub010_mean.csv"
+# method = "wk4RNv2_bikmeans.csv"
 ```
 
 Helper: reads and transposes data table
@@ -78,8 +78,6 @@ if(nrow(gold) != nrow(discretized)){
   gold = gold / (max(gold) - min(gold))
   ymin = 0
   ymax = 1
-  # ymin = -3
-  # ymax = 3
 }
 discretized = discretized[1:alpha,]
 ```
